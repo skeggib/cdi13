@@ -1,5 +1,6 @@
 function PageBuilder () {
 
+	this.currentSubject;
 	this.getDatas = new GetDatas();
 
 	/* Fontion pour mettre la premiere lettre en majuscule*/
@@ -28,7 +29,12 @@ function PageBuilder () {
 
 		$('.nav_subjects_object').click(function(event) {
 			console.log($(this).attr('data-cdi13-id'));
-			self.createNavLink($(this).attr('data-cdi13-id'));
+			console.log(self.currentSubject);
+			if(self.currentSubject != $(this).attr('data-cdi13-id')){
+				console.log("request send");
+				self.createNavLink($(this).attr('data-cdi13-id'));
+			}
+			self.currentSubject = $(this).attr('data-cdi13-id');
 		}).bind(self);
 	};
 
