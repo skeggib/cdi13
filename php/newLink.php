@@ -13,7 +13,7 @@ include_once "functions/dbConnect.php";
 //if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 	
 	$db = dbConnect();
-	$link = addLink(/*$_GET["url"]*/"https://hackmd.io/KwFgjA7AZgnGCmBaAHAQwExkSZUBGKAzAGxKGrLDzGEAM6tAJhEAAA==");
+	$link = addLink($_GET["url"]);
 
 	if ($link != false) {
 		$arr = array('link' => $link->getUrl(), 'name' => $link->getName(), 'subject_id' => subjectId($link->getSubject()));

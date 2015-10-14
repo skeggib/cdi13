@@ -24,7 +24,7 @@ function subjectId($subjectName) {
  * @param int $semesterId  ID du semestre du sujet
  */
 function addSubject($subjectName) {
-
+	
 	$query = "INSERT INTO subjects(name, short_name) VALUES('" . $subjectName . "', '" . $subjectName . "')";
 	pg_query($query);
 
