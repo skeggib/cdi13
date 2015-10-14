@@ -26,11 +26,11 @@ Executer le fichier sql/createTables.sql pour creer les tables.
 ## Utilisation des fichiers PHP
 
 Les fichiers PHP à utiliser à la racine du dossier php.
-Ces fichiers renvoient des données uniquement si la requette est de type GET est réalisée via AJAX.
+Ces fichiers renvoient des données uniquement si la requette est de type GET et est réalisée via AJAX.
 
 ### getSubjects.php
 
-Retourne la liste des sujets au forma JSON de la forme :
+Retourne la liste des sujets au format JSON sous cette forme :
 
 ```json
 [
@@ -48,24 +48,24 @@ Retourne la liste des sujets au forma JSON de la forme :
 
 ### getLinks.php
 
-Retourne une liste de cours au format JSON de la forme :
+Retourne une liste de cours au format JSON sous cette forme :
 
 ```json
 [
 	{
 		"id":"1",
-		"link":"https:\/\/hackmd.io\/s\/NJVu9dxeg",
-		"name":"6. Traveaux dirig\u00e9s"
+		"link":"https://hackmd.io/s/NJVu9dxeg",
+		"name":"6. Traveaux dirigé"
 	},
 	{
 		"id":"4",
-		"link":"https:\/\/hackmd.io\/OwTghgpgHC4LQGYCsAzEcAsAmAxusUAbOhlAIwAmKOWFwCpQAAA=",
+		"link":"https://hackmd.io/OwTghgpgHC4LQGYCsAzEcAsAmAxusUAbOhlAIwAmKOWFwCpQAAA=",
 		"name":"1. TD"
 	},
 	{
 		"id":"5",
-		"link":"https:\/\/hackmd.io\/MzCMCNQFgDgMwLSQAwFMG1eJoCGBWBUAYwBNkAmC3GMVZIAA",
-		"name":"1. Probabilit\u00e9s discr\u00e8tes"
+		"link":"https://hackmd.io/MzCMCNQFgDgMwLSQAwFMG1eJoCGBWBUAYwBNkAmC3GMVZIAA",
+		"name":"1. Probabilité discrètes"
 	}
 ]
 ```
@@ -81,7 +81,7 @@ Ajoute un lien à la base de données et retourne l'objet ajouté au format JSON
 
 ```json
 {
-	"link":"https:\/\/hackmd.io\/KwFgjA7AZgnGCmBaAHAQwExkSZUBGKAzAGxKGrLDzGEAM6tAJhEAAA==",
+	"link":"https://hackmd.io/KwFgjA7AZgnGCmBaAHAQwExkSZUBGKAzAGxKGrLDzGEAM6tAJhEAAA==",
 	"name":"Communication des processus par tubes",
 	"subject_id":"system"
 }
