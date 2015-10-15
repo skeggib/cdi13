@@ -89,3 +89,33 @@ Ajoute un lien à la base de données et retourne l'objet ajouté au format JSON
 
 **Option : **
 - url : Lien à ajouter
+
+### searchLinks.php
+
+Effectue une recherche dans le base de données et retourne le resultat au format JSON de la forme :
+
+```json
+[
+	{
+		"id":"1",
+		"link":"https://hackmd.io/s/NJVu9dxeg",
+		"name":"6. Traveaux dirigé",
+		'subject_name':"Systemes"
+	},
+	{
+		"id":"4",
+		"link":"https://hackmd.io/OwTghgpgHC4LQGYCsAzEcAsAmAxusUAbOhlAIwAmKOWFwCpQAAA=",
+		"name":"1. TD"
+		'subject_name':"Systemes"
+	},
+	{
+		"id":"5",
+		"link":"https://hackmd.io/MzCMCNQFgDgMwLSQAwFMG1eJoCGBWBUAYwBNkAmC3GMVZIAA",
+		"name":"1. Probabilité discrètes"
+		'subject_name':"Probabilites"
+	}
+]
+```
+
+**Option : **
+- search_string : Texte de la recherche
