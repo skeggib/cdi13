@@ -1,6 +1,6 @@
 function GetDatas () {
 	this.getSubjects = function (subCurrent) {
-		$('#nav_subjects').load('loader.html');
+		$('#nav_subjects').append(loader);
 
 		$.ajax({
 			url : 'php/getSubjects.php',
@@ -13,7 +13,7 @@ function GetDatas () {
 		});
 	};
 	this.getLinks = function () {
-		$('#nav_links').load('loader.html');
+		$('#nav_links').append(loader);
 
 		$.ajax({
 			url : 'php/getLinks.php',
@@ -25,7 +25,7 @@ function GetDatas () {
 		});
 	};
 	this.getLinksBySubjectId = function (subject_id) {
-		$('#nav_links').load('loader.html');
+		$('#nav_links').append(loader);
 
 		$.ajax({
 			url : 'php/getLinks.php',
