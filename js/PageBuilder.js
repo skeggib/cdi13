@@ -86,7 +86,7 @@ function PageBuilder () {
 			$("#head_add_textarea").removeClass('focusOn');
 
 			if(text.indexOf('hackmd.io') >= 0){
-				self.sendDatas.newLink(text);
+				self.sendDatas.newLink(text); 
 			}
 		}
 
