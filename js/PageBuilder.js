@@ -77,12 +77,21 @@ function PageBuilder () {
 	this.addEventNewLink = function () {
 		var self = this;
 		$("#head_add_button").click(function(){
-			if(self.sendDatas.newLink($("#head_add_textarea").text()) != false){
-				self.createNavSubjects(self.currentSubject);
-				if(self.currentSubject != null){
-					self.createNavLink(self.currentSubject);
+			var text = $("#head_add_textarea").text();
+			$("#head_add_textarea").text("");
+
+			if(text.indexOf('hackmd.io') >= 0){
+				var query = self.sendDatas.newLink(text);
+
+				if(query != false){
+					self.createNavSubjects(self.currentSubject);
+					if(self.currentSubject != null){
+						self.createNavLink(self.currentSubject);
+					}
 				}
 			}
+
+
 		}).bind(self);
 	}
 }
