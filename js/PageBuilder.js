@@ -75,8 +75,8 @@ function PageBuilder () {
 	};
 
 	this.addEventNewLink = function () {
-		var self = this;
-		$("#head_add_button").click(function(){
+		
+		function sendRequest(self) {
 			var text = $("#head_add_textarea").text();
 			$("#head_add_textarea").text("");
 
@@ -90,8 +90,18 @@ function PageBuilder () {
 					}
 				}
 			}
+		}
 
+		var self = this;
+		$("#head_add_button").click(function(){
+			sendRequest(self);
+		}).bind(self);
 
+		$('#head_add_textarea').keydown(function(event) {
+			if(event.keyCode === 13){
+				event.preventDefault();
+				sendRequest(self);
+			}
 		}).bind(self);
 	}
 }
