@@ -104,11 +104,13 @@ function PageBuilder () {
 		}).bind(self);
 
 		$('#head_add_textarea').focusin(function(event) {
-			$(this).html("");
+			if($('#head_add_textarea').html().trim() == "Ajouter un lien vers un cours"){
+				$(this).html("");
+			}
 		})
 		$('#head_add_textarea').focusout(function(){
 			setTimeout(function(){
-				if(!$('#head_add_textarea').hasClass('focusOn')){
+				if(!$('#head_add_textarea').hasClass('focusOn') && $('#head_add_textarea').html().trim() == ""){
 					$('#head_add_textarea').html("Ajouter un lien vers un cours")
 				}
 			}, 100);
@@ -131,11 +133,13 @@ function PageBuilder () {
 		}).bind(self);
 
 		$('#head_search_textarea').focusin(function(event) {
-			$(this).html("");
+			if($('#head_search_textarea').html().trim() == "Ne marche pas encore..."){
+				$(this).html("");
+			}
 		})
 		$('#head_search_textarea').focusout(function(){
 			setTimeout(function(){
-				if(!$('#head_search_textarea').hasClass('focusOn')){
+				if(!$('#head_search_textarea').hasClass('focusOn') && $('#head_search_textarea').html().trim() == ""){
 					$('#head_search_textarea').html("Ne marche pas encore...")
 				}
 			}, 100);
