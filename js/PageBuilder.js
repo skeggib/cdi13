@@ -96,7 +96,7 @@ function PageBuilder () {
 			temp.addClass('nav_links_object');
 			temp.attr('data-cdi13-id', links[i].id);
 			temp.attr('data-cdi13-link', links[i].link);
-			temp.html(this.firstToUpperCase(links[i].name));
+			temp.html('(' + this.firstToUpperCase(links[i].subject_name) + ') ' + this.firstToUpperCase(links[i].name));
 
 			$('#nav_links').append(temp);			
 		};
@@ -151,6 +151,8 @@ function PageBuilder () {
 		function sendRequest (self) {
 
 			var text = $("#head_search_textarea").text();
+			text = text.trim();
+			console.log(text);
 			if(text.trim() != ""){
 				$(".nav_subjects_object").removeClass('selected');
 				self.getDatas.searchLinks(text);
@@ -162,11 +164,13 @@ function PageBuilder () {
 			sendRequest(self);
 		}).bind(self);
 
+		$('#head_search_textarea').keyup(function(event) {
+				sendRequest(self);
+		}).bind(self);
+
 		$('#head_search_textarea').keydown(function(event) {
 			if(event.keyCode === 13){
 				event.preventDefault();
-				sendRequest(self);
-			} else {
 				sendRequest(self);
 			}
 		}).bind(self);

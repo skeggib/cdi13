@@ -49,7 +49,7 @@ function GetDatas () {
 				'search_string' : search
 			},
 			success : function(response, statut){
-				//console.log((response));
+				console.log((response));
 				pageBuilder.createViewSearch(response);
 			}
 		});	
