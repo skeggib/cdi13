@@ -28,13 +28,16 @@ function PageBuilder () {
 		var self = this;
 
 		$('.nav_subjects_object').click(function(event) {
-			console.log($(this).attr('data-cdi13-id'));
-			console.log(self.currentSubject);
-			if(self.currentSubject != $(this).attr('data-cdi13-id')){
-				console.log("request send");
-				self.createNavLink($(this).attr('data-cdi13-id'));
+			var subId = $(this).attr('data-cdi13-id');
+			//console.log(subId);
+			//console.log(self.currentSubject);
+			if(self.currentSubject != subId){
+				$('.nav_subjects_object').removeClass('selected');
+				$(this).addClass('selected');
+				//console.log("request send");
+				self.createNavLink(subId);
 			}
-			self.currentSubject = $(this).attr('data-cdi13-id');
+			self.currentSubject = subId;
 		}).bind(self);
 	};
 
@@ -59,7 +62,7 @@ function PageBuilder () {
 		};
 
 		$('.nav_links_object').click(function(event) {
-			console.log($(this).attr('data-cdi13-link'));
+			//console.log($(this).attr('data-cdi13-link'));
 			window.open($(this).attr('data-cdi13-link'));
 		});
 	};
