@@ -10,4 +10,7 @@ div.textarea {
 	outline: 0px solid transparent;;
 
 	padding: 10px 20px;
+
+	overflow: hidden;
+	white-space: nowrap;
 }
