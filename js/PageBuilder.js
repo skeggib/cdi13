@@ -2,6 +2,7 @@ function PageBuilder () {
 
 	this.currentSubject;
 	this.getDatas = new GetDatas();
+	this.sendDatas = new SendDatas();
 
 	/* Fontion pour mettre la premiere lettre en majuscule*/
 	this.firstToUpperCase = function (string) {
@@ -13,7 +14,10 @@ function PageBuilder () {
 		Chaque sujet est ensuite inserer dans la page
 		Puis la fonction .click leur est attribué
 	*/
-	this.createNavSubjects = function () {
+	this.createNavSubjects = function (subCurrent) {
+		
+		$('#nav_subjects').html("");
+
 		var subjects = this.getDatas.getSubjects();
 		
 		for (var i = 0; i < subjects.length; i++) {
@@ -21,6 +25,9 @@ function PageBuilder () {
 			temp.addClass('nav_subjects_object');
 			temp.attr('data-cdi13-id', subjects[i].id);
 			temp.html(this.firstToUpperCase(subjects[i].name));
+			if(subCurrent != null && subjects[i].id == subCurrent){
+				temp.addClass('selected');
+			}
 
 			$('#nav_subjects').append(temp);			
 		};
@@ -66,4 +73,14 @@ function PageBuilder () {
 			window.open($(this).attr('data-cdi13-link'));
 		});
 	};
+
+	this.addEventNewLink = function () {
+		var self = this;
+		$("#newLink").click(function(){
+			if(self.sendDatas.newLink($("#newLinkArea").text()) != false){
+				self.createNavSubjects(self.currentSubject);
+				self.createNavLink(self.currentSubject);
+			}
+		}).bind(self);
+	}
 }

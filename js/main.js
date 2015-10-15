@@ -8,6 +8,7 @@ window.onload = function(){
 	console.log(getDatas.getSubjects());
 	console.log(getDatas.getLinks());
 
-	pageBuilder.createNavSubjects();
+	pageBuilder.createNavSubjects(null);
+	pageBuilder.addEventNewLink();
 
 }
