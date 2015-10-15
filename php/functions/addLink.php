@@ -10,7 +10,7 @@ include_once "dbConnect.php";
 function subjectId($subjectName) {
 
 	$query = "SELECT id FROM subjects WHERE short_name='" . $subjectName . "'";
-	$results = pg_query($query);
+	$results = pg_query(mysqli_real_escape_string($query));
 
 	if ($line = pg_fetch_array($results))
 		return $line[0];
@@ -26,7 +26,7 @@ function subjectId($subjectName) {
 function addSubject($subjectName) {
 	
 	$query = "INSERT INTO subjects(name, short_name) VALUES('" . $subjectName . "', '" . $subjectName . "')";
-	pg_query($query);
+	pg_query(mysqli_real_escape_string($query));
 
 	return subjectId($subjectName);
 }
@@ -35,6 +35,7 @@ function addSubject($subjectName) {
  * Ajoute un lien a la BDD
  * @param string $url        URL
  * @param int $semesterId ID du semestre
+ * @return 	Un objet Link en cas de succes ou false en cas d'echec
  */
 function addLink($url) {
 	$link = new Link();
@@ -57,7 +58,7 @@ function addLink($url) {
 	$query = "INSERT INTO links(link, name, subject_id) VALUES($$" . $link->getUrl() . "$$, $$" . $link->getName() . "$$, " . $subjectId . ")";
 
 	try {
-		pg_query($query);
+		pg_query(mysqli_real_escape_string($query));
 	}
 	catch (Exception $e) {
 		return false;
