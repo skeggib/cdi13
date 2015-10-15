@@ -1,0 +1,23 @@
+section#head_add,
+section#head_search {
+	padding: 10px 50px;
+}
+
+	div#head_add_textarea,
+	div#head_add_button,
+	div#head_search_textarea,
+	div#head_search_button {
+		position: relative;
+		float: left;
+	}
+
+	div#head_add_textarea,
+	div#head_search_textarea {
+		width: 79%;
+		margin-right: 1%;
+	}
+
+	div#head_add_button,
+	div#head_search_button {
+		width: 20%;
+	}

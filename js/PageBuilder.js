@@ -76,8 +76,8 @@ function PageBuilder () {
 
 	this.addEventNewLink = function () {
 		var self = this;
-		$("#newLink").click(function(){
-			if(self.sendDatas.newLink($("#newLinkArea").text()) != false){
+		$("#head_add_button").click(function(){
+			if(self.sendDatas.newLink($("#head_add_textarea").text()) != false){
 				self.createNavSubjects(self.currentSubject);
 				self.createNavLink(self.currentSubject);
 			}
