@@ -117,6 +117,19 @@ function PageBuilder () {
 
 	this.addEventSearch = function () {
 
+		var self = this;
+		$("#head_search_button").click(function(){
+			$('#head_add_textarea').addClass('focusOn')
+			//Do something
+		}).bind(self);
+
+		$('#head_search_textarea').keydown(function(event) {
+			if(event.keyCode === 13){
+				event.preventDefault();
+				//Do something
+			}
+		}).bind(self);
+
 		$('#head_search_textarea').focusin(function(event) {
 			$(this).html("");
 		})
