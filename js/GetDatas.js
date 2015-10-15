@@ -1,6 +1,7 @@
 function GetDatas () {
 	this.getSubjects = function (subCurrent) {
-		var result;
+		$('#nav_subjects').load('loader.html');
+
 		$.ajax({
 			url : 'php/getSubjects.php',
 			type : 'GET',
@@ -10,25 +11,22 @@ function GetDatas () {
 				pageBuilder.createViewNavSubjects(subCurrent, response);
 			}
 		});
-
-		return result; 
 	};
 	this.getLinks = function () {
-		var result;
+		$('#nav_links').load('loader.html');
+
 		$.ajax({
 			url : 'php/getLinks.php',
 			type : 'GET',
 			dataType : 'json',
 			success : function(response, statut){
-				//console.log(JSON.parse(response));
-				result = response;
+				//do nothing
 			}
 		});
-
-		return result; 
 	};
 	this.getLinksBySubjectId = function (subject_id) {
-		var result;
+		$('#nav_links').load('loader.html');
+
 		$.ajax({
 			url : 'php/getLinks.php',
 			type : 'GET',
@@ -38,11 +36,8 @@ function GetDatas () {
 			},
 			success : function(response, statut){
 				//console.log(JSON.parse(response));
-				result = response;
 				pageBuilder.createViewNavLink(response);
 			}
 		});
-
-		return result; 
 	};
 }
