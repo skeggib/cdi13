@@ -4,6 +4,12 @@ function PageBuilder () {
 	this.getDatas = new GetDatas();
 	this.sendDatas = new SendDatas();
 
+	this.init = function () {
+		this.getDatas.getSubjects(null);
+		this.addEventNewLink();
+		this.addEventSearch();
+	}
+
 	/* Fontion pour mettre la premiere lettre en majuscule*/
 	this.firstToUpperCase = function (string) {
 		return string.substring(0,1).toUpperCase()+string.substring(1,string.length);
@@ -76,7 +82,8 @@ function PageBuilder () {
 		
 		function sendRequest(self) {
 			var text = $("#head_add_textarea").text();
-			$("#head_add_textarea").text("");
+			$("#head_add_textarea").text("Ajouter un lien vers un cours");
+			$("#head_add_textarea").removeClass('focusOn');
 
 			if(text.indexOf('hackmd.io') >= 0){
 				self.sendDatas.newLink(text);
@@ -85,6 +92,7 @@ function PageBuilder () {
 
 		var self = this;
 		$("#head_add_button").click(function(){
+			$('#head_add_textarea').addClass('focusOn')
 			sendRequest(self);
 		}).bind(self);
 
@@ -94,5 +102,30 @@ function PageBuilder () {
 				sendRequest(self);
 			}
 		}).bind(self);
+
+		$('#head_add_textarea').focusin(function(event) {
+			$(this).html("");
+		})
+		$('#head_add_textarea').focusout(function(){
+			setTimeout(function(){
+				if(!$('#head_add_textarea').hasClass('focusOn')){
+					$('#head_add_textarea').html("Ajouter un lien vers un cours")
+				}
+			}, 100);
+		})
+	}
+
+	this.addEventSearch = function () {
+
+		$('#head_search_textarea').focusin(function(event) {
+			$(this).html("");
+		})
+		$('#head_search_textarea').focusout(function(){
+			setTimeout(function(){
+				if(!$('#head_search_textarea').hasClass('focusOn')){
+					$('#head_search_textarea').html("Ne marche pas encore...")
+				}
+			}, 100);
+		})
 	}
 }

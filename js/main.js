@@ -1,14 +1,13 @@
 //$.ajaxSetup({async: false}); // Ne pas supprimer
 
+var loader = $('<div>').load('loader.html')
+loader.addClass('loaderDiv');
+
+$('html').append(loader);
+
 window.onload = function(){
-	
-	getDatas = new GetDatas();
 	pageBuilder = new PageBuilder();
+	pageBuilder.init();
 
-/*	console.log(getDatas.getSubjects());
-	console.log(getDatas.getLinks());*/
-
-	pageBuilder.getDatas.getSubjects(null);
-	pageBuilder.addEventNewLink();
-
+	$('.loaderDiv').remove();
 }
