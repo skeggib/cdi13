@@ -54,7 +54,7 @@ function addLink($url) {
 	if ($subjectId == false)
 		$subjectId = addSubject($link->getSubject());
 
-	$query = "INSERT INTO links(link, name, subject_id) VALUES('" . $link->getUrl() . "', '" . $link->getName() . "', " . $subjectId . ")";
+	$query = "INSERT INTO links(link, name, subject_id) VALUES($$" . $link->getUrl() . "$$, $$" . $link->getName() . "$$, " . $subjectId . ")";
 
 	try {
 		pg_query($query);
