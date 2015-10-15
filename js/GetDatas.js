@@ -40,4 +40,18 @@ function GetDatas () {
 			}
 		});
 	};
+	this.searchLinks = function (search) {
+		$.ajax({
+			url : 'php/searchLinks.php',
+			type : 'GET',
+			dataType : 'json',
+			data : {
+				'search_string' : search
+			},
+			success : function(response, statut){
+				//console.log((response));
+				pageBuilder.createViewSearch(response);
+			}
+		});	
+	}
 }
