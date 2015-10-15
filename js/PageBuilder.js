@@ -75,13 +75,32 @@ function PageBuilder () {
 	};
 
 	this.addEventNewLink = function () {
+		
+		function sendRequest(self) {
+			var text = $("#head_add_textarea").text();
+			$("#head_add_textarea").text("");
+
+			if(text.indexOf('hackmd.io') >= 0){
+				var query = self.sendDatas.newLink(text);
+
+				if(query != false){
+					self.createNavSubjects(self.currentSubject);
+					if(self.currentSubject != null){
+						self.createNavLink(self.currentSubject);
+					}
+				}
+			}
+		}
+
 		var self = this;
 		$("#head_add_button").click(function(){
-			if(self.sendDatas.newLink($("#head_add_textarea").text()) != false){
-				self.createNavSubjects(self.currentSubject);
-				if(self.currentSubject != null){
-					self.createNavLink(self.currentSubject);
-				}
+			sendRequest(self);
+		}).bind(self);
+
+		$('#head_add_textarea').keydown(function(event) {
+			if(event.keyCode === 13){
+				event.preventDefault();
+				sendRequest(self);
 			}
 		}).bind(self);
 	}
