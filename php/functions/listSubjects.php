@@ -2,7 +2,7 @@
 
 function getSubjectsArray() {
 	$query = "SELECT id, name FROM subjects";
-	$results = pg_query(mysqli_real_escape_string($query));
+	$results = pg_query($query);
 
 	$arr = array();
 	while ($line = pg_fetch_array($results)) {

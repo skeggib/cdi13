@@ -9,8 +9,8 @@ include_once "dbConnect.php";
  */
 function subjectId($subjectName) {
 
-	$query = "SELECT id FROM subjects WHERE short_name='" . $subjectName . "'";
-	$results = pg_query(mysqli_real_escape_string($query));
+	$query = "SELECT id FROM subjects WHERE short_name='" . pg_escape_string($subjectName) . "'";
+	$results = pg_query($query);
 
 	if ($line = pg_fetch_array($results))
 		return $line[0];
@@ -25,8 +25,8 @@ function subjectId($subjectName) {
  */
 function addSubject($subjectName) {
 	
-	$query = "INSERT INTO subjects(name, short_name) VALUES('" . $subjectName . "', '" . $subjectName . "')";
-	pg_query(mysqli_real_escape_string($query));
+	$query = "INSERT INTO subjects(name, short_name) VALUES('" . pg_escape_string($subjectName) . "', '" . pg_escape_string($subjectName) . "')";
+	pg_query($query);
 
 	return subjectId($subjectName);
 }
@@ -55,10 +55,10 @@ function addLink($url) {
 	if ($subjectId == false)
 		$subjectId = addSubject($link->getSubject());
 
-	$query = "INSERT INTO links(link, name, subject_id) VALUES($$" . $link->getUrl() . "$$, $$" . $link->getName() . "$$, " . $subjectId . ")";
+	$query = "INSERT INTO links(link, name, subject_id) VALUES($$" . pg_escape_string($link->getUrl()) . "$$, $$" . pg_escape_string($link->getName()) . "$$, " . pg_escape_string($subjectId) . ")";
 
 	try {
-		pg_query(mysqli_real_escape_string($query));
+		pg_query($query);
 	}
 	catch (Exception $e) {
 		return false;

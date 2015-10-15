@@ -5,9 +5,9 @@ function getLinksArray($subjectId) {
 	if ($subjectId == -1)
 		$query = "SELECT id, link, name FROM links";
 	else
-		$query = "SELECT id, link, name FROM links WHERE subject_id=" . $subjectId;
+		$query = "SELECT id, link, name FROM links WHERE subject_id=" . pg_escape_string($subjectId);
 	
-	$results = pg_query(mysqli_real_escape_string($query));
+	$results = pg_query($query);
 
 	$arr = array();
 	while ($line = pg_fetch_array($results)) {
