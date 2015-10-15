@@ -19,6 +19,19 @@ div.nav_links_object {
 	cursor: pointer;
 }
 
+div.nav_subjects_object:hover,
+div.nav_links_object:hover {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#abc1f2+0,85a1dd+100 */
+	background: #abc1f2; /* Old browsers */
+	background: -moz-linear-gradient(top,  #abc1f2 0%, #85a1dd 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#abc1f2), color-stop(100%,#85a1dd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #abc1f2 0%,#85a1dd 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #abc1f2 0%,#85a1dd 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #abc1f2 0%,#85a1dd 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #abc1f2 0%,#85a1dd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abc1f2', endColorstr='#85a1dd',GradientType=0 ); /* IE6-9 */
+}
+
 div.nav_subjects_object.selected {
 	color: #EEE;
 
