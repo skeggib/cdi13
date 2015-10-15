@@ -1,14 +1,14 @@
-$.ajaxSetup({async: false}); // Ne pas supprimer
+//$.ajaxSetup({async: false}); // Ne pas supprimer
 
 window.onload = function(){
 	
 	getDatas = new GetDatas();
 	pageBuilder = new PageBuilder();
 
-	console.log(getDatas.getSubjects());
-	console.log(getDatas.getLinks());
+/*	console.log(getDatas.getSubjects());
+	console.log(getDatas.getLinks());*/
 
-	pageBuilder.createNavSubjects(null);
+	pageBuilder.getDatas.getSubjects(null);
 	pageBuilder.addEventNewLink();
 
 }

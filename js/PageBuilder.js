@@ -14,12 +14,11 @@ function PageBuilder () {
 		Chaque sujet est ensuite inserer dans la page
 		Puis la fonction .click leur est attribué
 	*/
-	this.createNavSubjects = function (subCurrent) {
-		
+	this.createViewNavSubjects = function (subCurrent, subjects) {
+		//Vide le nav
 		$('#nav_subjects').html("");
 
-		var subjects = this.getDatas.getSubjects();
-		
+		//Construit et ajout tout les sujets dans le nav
 		for (var i = 0; i < subjects.length; i++) {
 			var temp = $('<div></div>');
 			temp.addClass('nav_subjects_object');
@@ -32,8 +31,8 @@ function PageBuilder () {
 			$('#nav_subjects').append(temp);			
 		};
 
+		//Permet de charger les liens associer a un sujet
 		var self = this;
-
 		$('.nav_subjects_object').click(function(event) {
 			var subId = $(this).attr('data-cdi13-id');
 			//console.log(subId);
@@ -42,7 +41,7 @@ function PageBuilder () {
 				$('.nav_subjects_object').removeClass('selected');
 				$(this).addClass('selected');
 				//console.log("request send");
-				self.createNavLink(subId);
+				self.getDatas.getLinksBySubjectId(subId);
 			}
 			self.currentSubject = subId;
 		}).bind(self);
@@ -53,11 +52,10 @@ function PageBuilder () {
 		Chaque lien est ensuite inseré dans la page
 		Puis la fonction .click leur est attribué
 	*/
-	this.createNavLink = function (id) {
-		var links = this.getDatas.getLinksBySubjectId(id);
-		
+	this.createViewNavLink = function (links){
+		//Vide le nav
 		$('#nav_links').html("");
-
+		//Contruit et ajoute touts les liens dans le nav
 		for (var i = 0; i < links.length; i++) {
 			var temp = $('<div></div>');
 			temp.addClass('nav_links_object');
@@ -67,12 +65,12 @@ function PageBuilder () {
 
 			$('#nav_links').append(temp);			
 		};
-
+		//Ouvre la page associer au lien
 		$('.nav_links_object').click(function(event) {
 			//console.log($(this).attr('data-cdi13-link'));
 			window.open($(this).attr('data-cdi13-link'));
 		});
-	};
+	}
 
 	this.addEventNewLink = function () {
 		
@@ -81,14 +79,7 @@ function PageBuilder () {
 			$("#head_add_textarea").text("");
 
 			if(text.indexOf('hackmd.io') >= 0){
-				var query = self.sendDatas.newLink(text);
-
-				if(query != false){
-					self.createNavSubjects(self.currentSubject);
-					if(self.currentSubject != null){
-						self.createNavLink(self.currentSubject);
-					}
-				}
+				self.sendDatas.newLink(text);
 			}
 		}
 

@@ -1,13 +1,13 @@
 function GetDatas () {
-	this.getSubjects = function () {
+	this.getSubjects = function (subCurrent) {
 		var result;
 		$.ajax({
 			url : 'php/getSubjects.php',
 			type : 'GET',
 			dataType : 'json',
 			success : function(response, statut){
-				//console.log(JSON.parse(response));
 				result = response;
+				pageBuilder.createViewNavSubjects(subCurrent, response);
 			}
 		});
 
@@ -39,6 +39,7 @@ function GetDatas () {
 			success : function(response, statut){
 				//console.log(JSON.parse(response));
 				result = response;
+				pageBuilder.createViewNavLink(response);
 			}
 		});
 

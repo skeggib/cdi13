@@ -10,6 +10,14 @@ function SendDatas () {
 			},
 			success : function(response, statut){
 				console.log(response);
+
+				if(response != false){
+					pageBuilder.getDatas.getSubjects(pageBuilder.currentSubject);
+					if(pageBuilder.currentSubject != null){
+						pageBuilder.getDatas.getLinksBySubjectId(pageBuilder.currentSubject);
+					}
+				}
+
 				result = response;
 			}
 		});
