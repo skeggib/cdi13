@@ -4,9 +4,10 @@ function GetDatas () {
 		$.ajax({
 			url : 'php/getSubjects.php',
 			type : 'GET',
+			dataType : 'json',
 			success : function(response, statut){
 				//console.log(JSON.parse(response));
-				result = JSON.parse(response);
+				result = response;
 			}
 		});
 
@@ -17,9 +18,10 @@ function GetDatas () {
 		$.ajax({
 			url : 'php/getLinks.php',
 			type : 'GET',
+			dataType : 'json',
 			success : function(response, statut){
 				//console.log(JSON.parse(response));
-				result = JSON.parse(response);
+				result = response;
 			}
 		});
 
@@ -30,12 +32,13 @@ function GetDatas () {
 		$.ajax({
 			url : 'php/getLinks.php',
 			type : 'GET',
+			dataType : 'json',
 			data : {
 				'subject_id' : subject_id
 			},
 			success : function(response, statut){
 				//console.log(JSON.parse(response));
-				result = JSON.parse(response);
+				result = response;
 			}
 		});
 
