@@ -79,7 +79,9 @@ function PageBuilder () {
 		$("#head_add_button").click(function(){
 			if(self.sendDatas.newLink($("#head_add_textarea").text()) != false){
 				self.createNavSubjects(self.currentSubject);
-				self.createNavLink(self.currentSubject);
+				if(self.currentSubject != null){
+					self.createNavLink(self.currentSubject);
+				}
 			}
 		}).bind(self);
 	}
