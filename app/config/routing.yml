@@ -1,3 +1,7 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+cdi13_database:
+    resource: "@CDI13DatabaseBundle/Resources/config/routing.yml"
+    prefix:   /database/
+
+cdi13_links:
+    resource: "@CDI13LinksBundle/Resources/config/routing.yml"
+    prefix:   /

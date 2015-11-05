@@ -1,0 +1,3 @@
+cdi13_links_homepage:
+    path:     /cours
+    defaults: { _controller: CDI13LinksBundle:Default:index }

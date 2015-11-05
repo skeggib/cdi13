@@ -1,0 +1,19 @@
+cdi13_database_getSubjects:
+    path:     /get/subjects
+    defaults: { _controller: CDI13DatabaseBundle:Default:getSubjects }
+
+cdi13_database_getLinks:
+    path:     /get/links
+    defaults: { _controller: CDI13DatabaseBundle:Default:getLinks }
+
+cdi13_database_searchLinks:
+    path:     /get/search/links
+    defaults: { _controller: CDI13DatabaseBundle:Default:searchLinks }
+
+cdi13_database_addSubject:
+    path:     /add/subject
+    defaults: { _controller: CDI13DatabaseBundle:Default:addSubject }
+
+cdi13_database_addLink:
+    path:     /add/link
+    defaults: { _controller: CDI13DatabaseBundle:Default:addLink }
