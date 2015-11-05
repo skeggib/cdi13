@@ -1,5 +1,3 @@
-\i drop.sql
-
 CREATE TABLE subject (
     id SERIAL PRIMARY KEY,
     short_name VARCHAR UNIQUE NOT NULL,
@@ -21,5 +19,3 @@ CREATE TABLE markdown (
 	creation_timestamp TIMESTAMP NOT NULL
 );
 
-\i create_functions.sql
-\i create_views.sql
