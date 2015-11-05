@@ -78,7 +78,7 @@ class Link
 	/* --- GET/SET --- */
 
 	public function getUrl() {
-		return $this->link;
+		return $this->url;
 	}
 
 	public function getName() {

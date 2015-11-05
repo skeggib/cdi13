@@ -113,4 +113,75 @@ class Database
 		else
 			return json_encode($arr);
 	}
+
+	/*!
+	 * Retourne l'id d'un sujet a partir de son short_nom
+	 * @param  string $subjectName short_name du sujet
+	 */
+	private function subjectId($subjectName) {
+
+		$query = "SELECT id FROM subject WHERE short_name='" . pg_escape_string($subjectName) . "'";
+		$results = pg_query($query);
+
+		if ($line = pg_fetch_array($results))
+			return $line[0];
+
+		return false;
+	}
+
+	/*!
+	 * Ajoute le sujet a la BDD
+	 * @param string $subjectName Nom du sujet
+	 * @param int $semesterId  ID du semestre du sujet
+	 */
+	private function addSubject($subjectName) {
+		
+		$query = "INSERT INTO subject(full_name, short_name) VALUES('" . pg_escape_string($subjectName) . "', '" . pg_escape_string($subjectName) . "')";
+		pg_query($query);
+
+		return $this->subjectId($subjectName);
+	}
+
+	/*!
+	 * Ajoute un lien a la BDD
+	 * @param string $url        URL
+	 * @param int $semesterId ID du semestre
+	 * @return 	Un objet Link en cas de succes ou false en cas d'echec
+	 */
+	public function addLink($url) {
+		$link = new Link();
+		
+		try {
+			$link->load($url);
+		}
+		catch (Exception $e) {
+			return "false";
+		}
+
+		/* --- Database --- */
+
+
+		$subjectId = $this->subjectId($link->getSubjectName());
+
+		if ($subjectId == false)
+			$subjectId = $this->addSubject($link->getSubjectName());
+
+		$query = "INSERT INTO link(link, name, subject_id) VALUES($$" . pg_escape_string($link->getUrl()) . "$$, $$" . pg_escape_string($link->getName()) . "$$, " . pg_escape_string($subjectId) . ")";
+
+		try {
+			pg_query($query);
+		}
+		catch (Exception $e) {
+			return "false";
+		}
+
+		if ($link != false) {
+			$arr = array('link' => $link->getUrl(), 'name' => $link->getName(), 'subject_id' => $this->subjectId($link->getSubjectName()));
+			return json_encode($arr);
+		}
+		else
+			return "false";
+
+		dbClose($db);
+	}
 }

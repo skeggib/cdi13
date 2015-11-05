@@ -43,13 +43,14 @@ class DefaultController extends Controller
             return new Response("false");
     }
 
-    public function addSubjectAction() // TODO
+    public function addLinkAction(Request $request)
     {
-        return new Response("addSubject");
-    }
+    	if ($request->isXmlHttpRequest()) {
+            $database = new Database();
+            return new Response($database->addLink($request->get('url')));
+        }
 
-    public function addLinkAction() // TODO
-    {
-    	return new Response("addLink");
+        else
+            return new Response("false");
     }
 }
