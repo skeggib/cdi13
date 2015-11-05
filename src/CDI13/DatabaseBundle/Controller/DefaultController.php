@@ -10,7 +10,7 @@ use CDI13\DatabaseBundle\Ressources;
 
 class DefaultController extends Controller
 {
-    public function getSubjectsAction(Request $request) // TODO
+    public function getSubjectsAction(Request $request)
     {
     	if ($request->isXmlHttpRequest()) {
 	    	$database = new Database();
@@ -21,9 +21,15 @@ class DefaultController extends Controller
     		return new Response("false");
     }
 
-    public function getLinksAction() // TODO
+    public function getLinksAction(Request $request)
     {
-        return new Response("getLinks");
+        if ($request->isXmlHttpRequest()) {
+            $database = new Database();
+            return new Response($database->getLinks($request->get('subject_id')));
+        }
+
+        else
+            return new Response("false");
     }
 
     public function searchLinksAction() // TODO

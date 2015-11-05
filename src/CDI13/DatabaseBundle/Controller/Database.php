@@ -54,4 +54,28 @@ class Database
 		else
 			return json_encode($arr);
 	}
+
+	/*!
+	 * Retourne une list de links correspondants a un subject
+	 * @param  int $subject_id ID du subject
+	 * @return String           La liste des links au format JSON ou "false" en cas d'erreur
+	 */
+	public function getLinks($subject_id) {
+		if ($subject_id == -1)
+			$query = "SELECT id, link, name FROM link";
+		else
+			$query = "SELECT id, link, name FROM link WHERE subject_id=" . pg_escape_string($subject_id);
+		
+		$results = pg_query($query);
+
+		$arr = array();
+		while ($line = pg_fetch_array($results)) {
+			$arr[] = array('id' => $line[0], 'link' => $line[1], 'name' => $line[2]);
+		}
+
+		if (count($arr) == 0)
+			return "false";
+		else
+			return json_encode($arr);
+	}
 }
