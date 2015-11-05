@@ -4,12 +4,21 @@ namespace CDI13\DatabaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+
+use CDI13\DatabaseBundle\Ressources;
 
 class DefaultController extends Controller
 {
-    public function getSubjectsAction() // TODO
+    public function getSubjectsAction(Request $request) // TODO
     {
-        return new Response("getSubjects");
+    	if ($request->isXmlHttpRequest()) {
+	    	$database = new Database();
+	        return new Response($database->getSubjects());
+    	}
+
+    	else
+    		return new Response("false");
     }
 
     public function getLinksAction() // TODO
@@ -29,6 +38,6 @@ class DefaultController extends Controller
 
     public function addLinkAction() // TODO
     {
-        return new Response("addLink");
+    	return new Response("addLink");
     }
 }
