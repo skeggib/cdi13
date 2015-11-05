@@ -9,13 +9,13 @@ CREATE TABLE link (
     link VARCHAR UNIQUE NOT NULL,
     name VARCHAR NOT NULL,
     subject_id INTEGER REFERENCES subject(id) NOT NULL,
-    creation_timestamp TIMESTAMP NOT NULL
+    creation_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE markdown (
 	id SERIAL PRIMARY KEY,
 	link_id INT REFERENCES link(id) NOT NULL,
 	markdown TEXT NOT NULL,
-	creation_timestamp TIMESTAMP NOT NULL
+	creation_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
