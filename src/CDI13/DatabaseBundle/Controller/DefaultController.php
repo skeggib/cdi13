@@ -32,9 +32,15 @@ class DefaultController extends Controller
             return new Response("false");
     }
 
-    public function searchLinksAction() // TODO
+    public function searchLinksAction(Request $request)
     {
-        return new Response("searchLinks");
+        if ($request->isXmlHttpRequest()) {
+            $database = new Database();
+            return new Response($database->searchLinks($request->get('search_string')));
+        }
+
+        else
+            return new Response("false");
     }
 
     public function addSubjectAction() // TODO

@@ -78,4 +78,39 @@ class Database
 		else
 			return json_encode($arr);
 	}
+
+	public function searchLinks($search_string) {
+		$str = strtolower($search_string);
+		$tab = explode(" ", $str);
+
+		$query = "SELECT link.id, link.link, link.name, subject.full_name FROM link JOIN subject ON link.subject_id = subject.id WHERE ";
+
+		for ($i = 0; $i < count($tab); $i++) {
+			if ($i != 0)
+				$query .= " OR ";
+			$query .= "LOWER(link.name) LIKE '%" . pg_escape_string($tab[$i]) . "%'";
+		}
+
+		if ($i > 0)
+			$query .= " OR ";
+
+		for ($i = 0; $i < count($tab); $i++) {
+			if ($i != 0)
+				$query .= " OR ";
+			$query .= "LOWER(subject.full_name) LIKE '%" . pg_escape_string($tab[$i]) . "%'";
+		}
+
+
+		$results = pg_query($query);
+
+		$arr = array();
+		while ($line = pg_fetch_array($results)) {
+			$arr[] = array('id' => $line[0], 'link' => $line[1], 'name' => $line[2], 'subject_name' => $line[3]);
+		}
+
+		if (count($arr) == 0)
+			return "false";
+		else
+			return json_encode($arr);
+	}
 }
