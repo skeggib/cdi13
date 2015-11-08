@@ -1,6 +1,6 @@
 function GetDatas () {
 
-	var urlPrefix = '/cdi13/web/app_dev.php'; // TODO Modifier a la fin
+	var urlPrefix = ''; // TODO Modifier a la fin
 
 	this.getSubjects = function (subCurrent) {
 		$('#nav_subjects').append(loader);
