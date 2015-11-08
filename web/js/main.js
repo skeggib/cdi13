@@ -1,6 +1,6 @@
 //$.ajaxSetup({async: false}); // Ne pas supprimer
 
-var loader = $('<div>').load('loader.html')
+var loader = $('<div>').load('../html/loader.html')
 loader.addClass('loaderDiv');
 
 $('html').append(loader);
