@@ -24,28 +24,41 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/loader.css') }}">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/z-index.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/screen.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/colors.css') }}">
 	</head>
 
 	<body>
 
-		<section id="head">
-			<section id="head_add">
-				<!-- Permet l'ajout de liens -->
+		<section id="head" class="row">
 
-				<div id="head_add_textarea" class="textarea" contenteditable>Ajouter un lien vers un cours</div>
-				<div id="head_add_button" class="button">Ajouter</div>
+			<!-- Permet la recherche -->
 
+			<section id="head_add_container_searchtextbox">
+				<div id="head_search_textarea" class="textarea" contenteditable>
+					Chercher un cours
+				</div>
 			</section>
-			<section id="head_search">
-				<!-- Permet la recherche -->
 
-				<div id="head_search_textarea" class="textarea" contenteditable>Chercher un cours</div>
-				<div id="head_search_button" class="button">Chercher</div>
+			<!-- Permet l'ajout de liens -->
+
+			<section id="head_add_container_addtextbox">
+				<div id="head_add_textarea" class="textarea" contenteditable>
+					Ajouter un lien vers un cours
+				</div>
+			</section>
+
+			<section id="head_add_container_addbutton">
+				<div id="head_add_button" class="button">
+					Ajouter
+				</div>
+			</section>
 				
-			</section>
 		</section>
 
-		<section id="nav">
+		<section id="nav" class="row">
 			<!-- Contient la navigation -->
 
 			<section id="nav_subjects">

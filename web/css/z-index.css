@@ -1,3 +1,15 @@
 div.loader {
 	z-index: 100000;
 }
+
+section#head {
+	z-index: 2000;
+}
+
+section#nav {
+	z-index: 1000;
+}
+
+section#nav_subjects {
+	z-index: 500;
+}

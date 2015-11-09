@@ -1,23 +1,33 @@
-section#head_add,
-section#head_search {
-	padding: 10px 50px;
+section#head_add_container_addtextbox,
+section#head_add_container_addbutton,
+section#head_add_container_searchtextbox {
+	position: relative;
+	height: 100%;
+	box-sizing: border-box;
+	float: left;
+}
+
+
+section#head_add_container_addtextbox {
+	width: 45%;
+}
+
+section#head_add_container_addbutton {
+	width: 10%;
+}
+
+section#head_add_container_searchtextbox {
+	width: 45%;
 }
 
 	div#head_add_textarea,
 	div#head_add_button,
-	div#head_search_textarea,
-	div#head_search_button {
+	div#head_search_textarea {
 		position: relative;
 		float: left;
 	}
 
 	div#head_add_textarea,
 	div#head_search_textarea {
-		width: 79%;
-		margin-right: 1%;
-	}
-
-	div#head_add_button,
-	div#head_search_button {
-		width: 20%;
+		border-right: solid 1px #777;
 	}

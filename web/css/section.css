@@ -4,11 +4,16 @@ section {
 	overflow: hidden;
 }
 
+section#head {
+	top: 0;
+	height: 42px;
+
+	box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
+}
+
 section#nav {
-	bottom: 0%;
-	left: 0%;
-	height: 90%;
-	width: 100%;
+	top: 42px;
+	bottom: 0;
 
 	border-top: solid 1px #777;
 }
@@ -20,6 +25,8 @@ section#nav {
 		left: 0;
 
 		border-right: solid 1px #777;
+
+		box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
 	}
 
 	section#nav_links {
@@ -27,25 +34,4 @@ section#nav {
 		width: 70%;
 		top: 0;
 		left: 30%;
-	}
-
-section#head {
-	top: 0;
-	left: 0;
-	height: 10%;
-	width: 100%;
-}
-
-	section#head_search {
-		height: 100%;
-		width: 50%;
-		top: 0;
-		left: 0;
-	}
-	
-	section#head_add {
-		height: 100%;
-		width: 50%;
-		top: 0;
-		left: 50%;
 	}
