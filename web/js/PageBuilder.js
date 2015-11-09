@@ -180,5 +180,13 @@ function PageBuilder () {
 				$(this).html("");
 			}
 		});
+		
+		$('#head_search_textarea').focusout(function(){
+			setTimeout(function(){
+				if(!$('#head_search_textarea').hasClass('focusOn') && $('#head_search_textarea').html().trim() == ""){
+					$('#head_search_textarea').html("Chercher un cours")
+				}
+			}, 100);
+		})
 	}
 }
