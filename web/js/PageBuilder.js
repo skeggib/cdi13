@@ -1,13 +1,20 @@
 function PageBuilder () {
 
-	this.currentSubject;
+	this.currentSubject = null;
+
+	this.historic = [];
+
 	this.getDatas = new GetDatas();
 	this.sendDatas = new SendDatas();
+
+	this.displayManager = new DisplayManager();
 
 	this.init = function () {
 		this.getDatas.getSubjects(null);
 		this.addEventNewLink();
 		this.addEventSearch();
+		this.addEventBack();
+		this.displayManager.displayView_Subjects();
 	}
 
 	/* Fontion pour mettre la premiere lettre en majuscule*/
@@ -47,13 +54,15 @@ function PageBuilder () {
 			//console.log(subId);
 			//console.log(self.currentSubject);
 			if(self.currentSubject != subId){
+				self.historic.push({view : 'subject', id : self.currentSubject});
 				$('.nav_subjects_object').removeClass('selected');
 				$(this).addClass('selected');
 				//console.log("request send");
 				self.getDatas.getLinksBySubjectId(subId);
+				self.displayManager.displayView_Links();
 			}
 			self.currentSubject = subId;
-		}).bind(self);
+		});
 	};
 
 	/*	Fontion qui crée des objets Jquery
@@ -90,6 +99,9 @@ function PageBuilder () {
 		//Vide le nav
 		$('#nav_links').html("");
 		$('#nav_subjects').removeClass('selected');
+
+		this.displayManager.displayView_Search();
+
 		//Contruit et ajoute touts les liens dans le nav
 		for (var i = 0; i < links.length; i++) {
 			var temp = $('<div></div>');
@@ -144,12 +156,52 @@ function PageBuilder () {
 				}
 			}, 100);
 		})
-	}
+	};
+
+	this.addEventBack = function () {
+		var self = this;
+		$('#head_back_button').click(function(event) {
+
+			console.log('');
+			console.log('TEST' , self.historic);
+			console.log('');
+			if(self.historic.length !== 0){
+				lastView = self.historic.pop();
+				console.log('TEST' , self.historic);
+				console.log('');
+				switch (lastView.view){
+					case 'subject' :
+						console.log('SUBJECT : ', parseInt(lastView.id));
+						if(!isNaN(parseInt(lastView.id))){
+							self.getDatas.getLinksBySubjectId(lastView.id);
+							self.displayManager.displayView_Links();
+						} else {
+							console.log("LAST SUBJECT");
+							self.displayManager.displayView_Subjects();
+						}
+						self.currentSubject = lastView.id;
+						self.getDatas.getSubjects(lastView.id);
+						console.log(self);
+						break;
+					case 'search' : 
+						$('#head_search_textarea').text("Chercher un cours");
+						self.displayManager.displayView_Links();
+						self.getDatas.getSubjects(self.currentSubject);
+						self.getDatas.getLinksBySubjectId(self.currentSubject);
+						break;
+					default :
+						//donothing	
+				}
+			}
+		});
+	};
 
 	this.addEventSearch = function () {
 
 		function sendRequest (self) {
-
+			if(self.historic.length != 0 && self.historic[self.historic.length - 1].view != 'search'){
+				self.historic.push({view : 'search'});
+			}
 			var text = $("#head_search_textarea").text();
 			text = text.trim();
 			console.log(text);
@@ -160,9 +212,6 @@ function PageBuilder () {
 		}
 
 		var self = this;
-		$("#head_search_button").click(function(){
-			sendRequest(self);
-		}).bind(self);
 
 		$('#head_search_textarea').keyup(function(event) {
 				sendRequest(self);
@@ -188,5 +237,5 @@ function PageBuilder () {
 				}
 			}, 100);
 		})
-	}
-}
+	};
+};
