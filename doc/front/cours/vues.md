@@ -20,7 +20,9 @@ Les classes permettant le placement sont :
 - **placement-hidden-left** : caché en dehors de l'écran à gauche
 - **placement-hidden-right** : caché en dehors de l'écran à droite
 
-#### Fonction resetPlacements
+#### Class DisplayManager
+
+##### Fonction resetPlacements
 
 Remet à zéro les classes "placement-..." de l'objet jQuery passé en parametre.
 
@@ -29,7 +31,7 @@ Par exemple :
 resetPlacements($('section#nav section#nav_subjects'));
 ```
 
-#### Fonctions displayView_<vue>
+##### Fonctions displayView_<vue>
 
 Place les sections en fonction de la vue demandée :
 
