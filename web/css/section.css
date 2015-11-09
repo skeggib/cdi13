@@ -18,20 +18,46 @@ section#nav {
 	border-top: solid 1px #777;
 }
 
-	section#nav_subjects {
-		height: 100%;
-		width: 30%;
-		top: 0;
-		left: 0;
-
-		border-right: solid 1px #777;
-
+	section#nav section {
 		box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
+		background-color: #fff;
+
+		-webkit-transition: all 0.5s ease-in-out;
 	}
 
-	section#nav_links {
-		height: 100%;
-		width: 70%;
-		top: 0;
-		left: 30%;
-	}
+/* Placement */
+
+.placement-fullscreen {
+	height: 100%;
+
+	width: 100%;
+	left: 0;
+}
+
+.placement-left {
+	height: 100%;
+
+	width: 30%;
+	left: 0;
+}
+
+.placement-right {
+	height: 100%;
+
+	width: 70%;
+	left: 30%;
+}
+
+.placement-hidden-left {
+	height: 100%;
+
+	width: 100%;
+	left: -100%;
+}
+
+.placement-hidden-right {
+	height: 100%;
+
+	width: 100%;
+	left: 100%;
+}

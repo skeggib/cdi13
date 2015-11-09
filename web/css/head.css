@@ -1,33 +1,37 @@
 section#head_add_container_addtextbox,
 section#head_add_container_addbutton,
-section#head_add_container_searchtextbox {
-	position: relative;
+section#head_add_container_searchtextbox,
+section#head_back {
+	position: absolute;
 	height: 100%;
 	box-sizing: border-box;
-	float: left;
+	border-right: solid 1px #777;
 }
 
+section#head_back {
+	left: 0;
+	width: 42px;
+}
+
+section#head_add_container_searchtextbox {
+	left: 42px;
+	right: 60%;
+}
 
 section#head_add_container_addtextbox {
-	width: 45%;
+	left: 40%;
+	width: 50%;
 }
 
 section#head_add_container_addbutton {
+	left: 90%;
 	width: 10%;
-}
-
-section#head_add_container_searchtextbox {
-	width: 45%;
 }
 
 	div#head_add_textarea,
 	div#head_add_button,
-	div#head_search_textarea {
+	div#head_search_textarea,
+	div#head_back_button {
 		position: relative;
 		float: left;
-	}
-
-	div#head_add_textarea,
-	div#head_search_textarea {
-		border-right: solid 1px #777;
 	}

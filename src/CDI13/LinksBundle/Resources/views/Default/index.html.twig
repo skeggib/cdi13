@@ -8,6 +8,8 @@
 		<script type="text/javascript" src="{{ asset('js/PageBuilder.js') }}" ></script>
 		<script type="text/javascript" src="{{ asset('js/main.js') }}" ></script>
 
+		<script type="text/javascript" src="{{ asset('js/changeView.js') }}" ></script>
+
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -36,6 +38,12 @@
 
 			<!-- Permet la recherche -->
 
+			<section id="head_back">
+				<div id="head_back_button" class="button">
+					&lt;
+				</div>
+			</section>
+
 			<section id="head_add_container_searchtextbox">
 				<div id="head_search_textarea" class="textarea" contenteditable>
 					Chercher un cours
@@ -61,7 +69,7 @@
 		<section id="nav" class="row">
 			<!-- Contient la navigation -->
 
-			<section id="nav_subjects">
+			<section id="nav_subjects" class="placement-hidden-right">
 				<!-- Liste des matières -->
 
 				<!-- 
@@ -70,7 +78,7 @@
 				 -->
 			</section>
 
-			<section id="nav_links">
+			<section id="nav_links" class="placement-hidden-right">
 				<!-- Liste des cours de la matière selectionnée -->
 
 				<!-- 
