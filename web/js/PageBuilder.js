@@ -162,21 +162,14 @@ function PageBuilder () {
 		var self = this;
 		$('#head_back_button').click(function(event) {
 
-			console.log('');
-			console.log('TEST' , self.historic);
-			console.log('');
 			if(self.historic.length !== 0){
 				lastView = self.historic.pop();
-				console.log('TEST' , self.historic);
-				console.log('');
 				switch (lastView.view){
 					case 'subject' :
-						console.log('SUBJECT : ', parseInt(lastView.id));
 						if(!isNaN(parseInt(lastView.id))){
 							self.getDatas.getLinksBySubjectId(lastView.id);
 							self.displayManager.displayView_Links();
 						} else {
-							console.log("LAST SUBJECT");
 							self.displayManager.displayView_Subjects();
 						}
 						self.currentSubject = lastView.id;
@@ -192,6 +185,8 @@ function PageBuilder () {
 					default :
 						//donothing	
 				}
+			} else {
+				self.displayManager.displayView_Subjects(); 
 			}
 		});
 	};
