@@ -1,20 +1,20 @@
 function PageBuilder () {
 
-	this.currentSubject = null;
+	this.current_subject = null;
 
 	this.historic = [];
 
-	this.getDatas = new GetDatas();
-	this.sendDatas = new SendDatas();
+	this.get_datas = new GetDatas();
+	this.send_datas = new SendDatas();
 
-	this.displayManager = new DisplayManager();
+	this.display_manager = new DisplayManager();
 
 	this.init = function () {
-		this.getDatas.getSubjects(null);
-		this.addEventNewLink();
-		this.addEventSearch();
-		this.addEventBack();
-		this.displayManager.displayView_Subjects();
+		this.get_datas.getSubjects(null);
+		this.addEvent_NewLink();
+		this.addEvent_Search();
+		this.addEvent_Back();
+		this.display_manager.displayView_Subjects();
 	}
 
 	/* Fontion pour mettre la premiere lettre en majuscule*/
@@ -27,7 +27,7 @@ function PageBuilder () {
 		Chaque sujet est ensuite inserer dans la page
 		Puis la fonction .click leur est attribué
 	*/
-	this.createViewNavSubjects = function (subCurrent, subjects) {
+	this.createView_Subjects = function (subCurrent, subjects) {
 		//Vide le nav
 		$('#nav_subjects').html("");
 
@@ -51,17 +51,14 @@ function PageBuilder () {
 			$('#head_search_textarea').text("Chercher un cours");
 
 			var subId = $(this).attr('data-cdi13-id');
-			//console.log(subId);
-			//console.log(self.currentSubject);
-			if(self.currentSubject != subId){
-				self.historic.push({view : 'subject', id : self.currentSubject});
+			if(self.current_subject != subId){
+				self.historic.push({view : 'subject', id : self.current_subject});
 				$('.nav_subjects_object').removeClass('selected');
 				$(this).addClass('selected');
-				//console.log("request send");
-				self.getDatas.getLinksBySubjectId(subId);
-				self.displayManager.displayView_Links();
+				self.get_datas.getLinksBySubjectId(subId);
+				self.display_manager.displayView_Links();
 			}
-			self.currentSubject = subId;
+			self.current_subject = subId;
 		});
 	};
 
@@ -70,7 +67,7 @@ function PageBuilder () {
 		Chaque lien est ensuite inseré dans la page
 		Puis la fonction .click leur est attribué
 	*/
-	this.createViewNavLink = function (links){
+	this.createView_Link = function (links){
 		//Vide le nav
 		$('#nav_links').html("");
 		//Contruit et ajoute touts les liens dans le nav
@@ -85,7 +82,6 @@ function PageBuilder () {
 		};
 		//Ouvre la page associer au lien
 		$('.nav_links_object').click(function(event) {
-			//console.log($(this).attr('data-cdi13-link'));
 			window.open($(this).attr('data-cdi13-link'));
 		});
 	}
@@ -95,12 +91,12 @@ function PageBuilder () {
 		Chaque lien est ensuite inseré dans la page
 		Puis la fonction .click leur est attribué
 	*/
-	this.createViewSearch = function (links){
+	this.createView_Search = function (links){
 		//Vide le nav
 		$('#nav_links').html("");
 		$('#nav_subjects').removeClass('selected');
 
-		this.displayManager.displayView_Search();
+		this.display_manager.displayView_Search();
 
 		//Contruit et ajoute touts les liens dans le nav
 		for (var i = 0; i < links.length; i++) {
@@ -114,12 +110,11 @@ function PageBuilder () {
 		};
 		//Ouvre la page associer au lien
 		$('.nav_links_object').click(function(event) {
-			//console.log($(this).attr('data-cdi13-link'));
 			window.open($(this).attr('data-cdi13-link'));
 		});
 	}
 
-	this.addEventNewLink = function () {
+	this.addEvent_NewLink = function () {
 		
 		function sendRequest(self) {
 			var text = $("#head_add_textarea").text();
@@ -127,7 +122,7 @@ function PageBuilder () {
 			$("#head_add_textarea").removeClass('focusOn');
 
 			if(text.indexOf('hackmd.io') >= 0){
-				self.sendDatas.newLink(text); 
+				self.send_datas.newLink(text); 
 			}
 		}
 
@@ -158,7 +153,7 @@ function PageBuilder () {
 		})
 	};
 
-	this.addEventBack = function () {
+	this.addEvent_Back = function () {
 		var self = this;
 		$('#head_back_button').click(function(event) {
 
@@ -167,31 +162,30 @@ function PageBuilder () {
 				switch (lastView.view){
 					case 'subject' :
 						if(!isNaN(parseInt(lastView.id))){
-							self.getDatas.getLinksBySubjectId(lastView.id);
-							self.displayManager.displayView_Links();
+							self.get_datas.getLinksBySubjectId(lastView.id);
+							self.display_manager.displayView_Links();
 						} else {
-							self.displayManager.displayView_Subjects();
+							self.display_manager.displayView_Subjects();
 						}
-						self.currentSubject = lastView.id;
-						self.getDatas.getSubjects(lastView.id);
-						console.log(self);
+						self.current_subject = lastView.id;
+						self.get_datas.getSubjects(lastView.id);
 						break;
 					case 'search' : 
 						$('#head_search_textarea').text("Chercher un cours");
-						self.displayManager.displayView_Links();
-						self.getDatas.getSubjects(self.currentSubject);
-						self.getDatas.getLinksBySubjectId(self.currentSubject);
+						self.display_manager.displayView_Links();
+						self.get_datas.getSubjects(self.current_subject);
+						self.get_datas.getLinksBySubjectId(self.current_subject);
 						break;
 					default :
 						//donothing	
 				}
 			} else {
-				self.displayManager.displayView_Subjects(); 
+				self.display_manager.displayView_Subjects(); 
 			}
 		});
 	};
 
-	this.addEventSearch = function () {
+	this.addEvent_Search = function () {
 
 		function sendRequest (self) {
 			if(self.historic.length != 0 && self.historic[self.historic.length - 1].view != 'search'){
@@ -199,10 +193,9 @@ function PageBuilder () {
 			}
 			var text = $("#head_search_textarea").text();
 			text = text.trim();
-			console.log(text);
 			if(text.trim() != ""){
 				$(".nav_subjects_object").removeClass('selected');
-				self.getDatas.searchLinks(text);
+				self.get_datas.searchLinks(text);
 			}
 		}
 
@@ -210,14 +203,14 @@ function PageBuilder () {
 
 		$('#head_search_textarea').keyup(function(event) {
 				sendRequest(self);
-		}).bind(self);
+		});
 
 		$('#head_search_textarea').keydown(function(event) {
 			if(event.keyCode === 13){
 				event.preventDefault();
 				sendRequest(self);
 			}
-		}).bind(self);
+		});
 
 		$('#head_search_textarea').focusin(function(event) {
 			if($('#head_search_textarea').html().trim() == "Chercher un cours"){

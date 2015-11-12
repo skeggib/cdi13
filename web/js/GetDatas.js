@@ -11,7 +11,7 @@ function GetDatas () {
 			dataType : 'json',
 			success : function(response, statut){
 				result = response;
-				pageBuilder.createViewNavSubjects(subCurrent, response);
+				pageBuilder.createView_Subjects(subCurrent, response);
 			}
 		});
 	};
@@ -38,8 +38,7 @@ function GetDatas () {
 				'subject_id' : subject_id
 			},
 			success : function(response, statut){
-				//console.log(JSON.parse(response));
-				pageBuilder.createViewNavLink(response);
+				pageBuilder.createView_Link(response);
 			}
 		});
 	};
@@ -52,8 +51,7 @@ function GetDatas () {
 				'search_string' : search
 			},
 			success : function(response, statut){
-				console.log((response));
-				pageBuilder.createViewSearch(response);
+				pageBuilder.createView_Search(response);
 			}
 		});	
 	}
