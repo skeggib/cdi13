@@ -13,9 +13,9 @@ function SendDatas () {
 			},
 			success : function(response, statut){
 				if(response != false){
-					pageBuilder.get_datas.getSubjects(pageBuilder.current_subject);
-					if(pageBuilder.current_subject != null){
-						pageBuilder.get_datas.get_LinksBySubjectId(pageBuilder.current_subject);
+					page_builder.get_datas.getSubjects(page_builder.current_subject);
+					if(page_builder.current_subject != null){
+						page_builder.get_datas.get_LinksBySubjectId(page_builder.current_subject);
 					}
 				}
 
