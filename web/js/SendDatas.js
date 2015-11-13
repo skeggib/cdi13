@@ -13,7 +13,7 @@ function SendDatas () {
 			},
 			success : function(response, statut){
 				if(response != false){
-					page_builder.get_datas.getSubjects(page_builder.current_subject);
+					page_builder.get_datas.get_Subjects(page_builder.current_subject);
 					if(page_builder.current_subject != null){
 						page_builder.get_datas.get_LinksBySubjectId(page_builder.current_subject);
 					}
