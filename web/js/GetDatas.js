@@ -11,7 +11,7 @@ function GetDatas () {
 			dataType : 'json',
 			success : function(response, statut){
 				result = response;
-				pageBuilder.createView_Subjects(subCurrent, response);
+				page_builder.createView_Subjects(subCurrent, response);
 			}
 		});
 	};
@@ -38,7 +38,7 @@ function GetDatas () {
 				'subject_id' : subject_id
 			},
 			success : function(response, statut){
-				pageBuilder.createView_Link(response);
+				page_builder.createView_Link(response);
 			}
 		});
 	};
@@ -51,7 +51,7 @@ function GetDatas () {
 				'search_string' : search
 			},
 			success : function(response, statut){
-				pageBuilder.createView_Search(response);
+				page_builder.createView_Search(response);
 			}
 		});	
 	}

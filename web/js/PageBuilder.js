@@ -52,7 +52,7 @@ function PageBuilder () {
 
 			var subId = $(this).attr('data-cdi13-id');
 			if(self.current_subject != subId){
-				self.historic.push({view : 'subject', id : self.current_subject});
+				self.display_manager.historic.push({view : 'subject', id : self.current_subject});
 				$('.nav_subjects_object').removeClass('selected');
 				$(this).addClass('selected');
 				self.get_datas.get_LinksBySubjectId(subId);
@@ -158,39 +158,15 @@ function PageBuilder () {
 		var self = this;
 		$('#head_back_button').click(function(event) {
 
-			if(self.historic.length !== 0){
-				lastView = self.historic.pop();
-				switch (lastView.view){
-					case 'subject' :
-						if(!isNaN(parseInt(lastView.id))){
-							self.get_datas.get_LinksBySubjectId(lastView.id);
-							self.display_manager.displayView_Links();
-						} else {
-							self.display_manager.displayView_Subjects();
-						}
-						self.current_subject = lastView.id;
-						self.get_datas.get_Subjects(lastView.id);
-						break;
-					case 'search' : 
-						$('#head_search_textarea').text("Chercher un cours");
-						self.display_manager.displayView_Links();
-						self.get_datas.get_Subjects(self.current_subject);
-						self.get_datas.get_LinksBySubjectId(self.current_subject);
-						break;
-					default :
-						//donothing	
-				}
-			} else {
-				self.display_manager.displayView_Subjects(); 
-			}
+			self.display_manager.displayLastView();
 		});
 	};
 
 	this.addEvent_Search = function () {
 
 		function sendRequest (self) {
-			if(self.historic.length != 0 && self.historic[self.historic.length - 1].view != 'search'){
-				self.historic.push({view : 'search'});
+			if(self.display_manager.historic.length != 0 && self.display_manager.historic[self.display_manager.historic.length - 1].view != 'search'){
+				self.display_manager.historic.push({view : 'search'});
 			}
 			var text = $("#head_search_textarea").text();
 			text = text.trim();
