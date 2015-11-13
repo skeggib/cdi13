@@ -10,7 +10,7 @@ function PageBuilder () {
 	this.display_manager = new DisplayManager();
 
 	this.init = function () {
-		this.get_datas.getSubjects(null);
+		this.get_datas.get_Subjects(null);
 		this.addEvent_NewLink();
 		this.addEvent_Search();
 		this.addEvent_Back();
@@ -55,7 +55,7 @@ function PageBuilder () {
 				self.historic.push({view : 'subject', id : self.current_subject});
 				$('.nav_subjects_object').removeClass('selected');
 				$(this).addClass('selected');
-				self.get_datas.getLinksBySubjectId(subId);
+				self.get_datas.get_LinksBySubjectId(subId);
 				self.display_manager.displayView_Links();
 			}
 			self.current_subject = subId;
@@ -127,17 +127,18 @@ function PageBuilder () {
 		}
 
 		var self = this;
+
 		$("#head_add_button").click(function(){	
 			$('#head_add_textarea').addClass('focusOn')
 			sendRequest(self);
-		}).bind(self);
+		});
 
 		$('#head_add_textarea').keydown(function(event) {
 			if(event.keyCode === 13){
 				event.preventDefault();
 				sendRequest(self);
 			}
-		}).bind(self);
+		});
 
 		$('#head_add_textarea').focusin(function(event) {
 			if($('#head_add_textarea').html().trim() == "Ajouter un lien vers un cours"){
@@ -162,19 +163,19 @@ function PageBuilder () {
 				switch (lastView.view){
 					case 'subject' :
 						if(!isNaN(parseInt(lastView.id))){
-							self.get_datas.getLinksBySubjectId(lastView.id);
+							self.get_datas.get_LinksBySubjectId(lastView.id);
 							self.display_manager.displayView_Links();
 						} else {
 							self.display_manager.displayView_Subjects();
 						}
 						self.current_subject = lastView.id;
-						self.get_datas.getSubjects(lastView.id);
+						self.get_datas.get_Subjects(lastView.id);
 						break;
 					case 'search' : 
 						$('#head_search_textarea').text("Chercher un cours");
 						self.display_manager.displayView_Links();
-						self.get_datas.getSubjects(self.current_subject);
-						self.get_datas.getLinksBySubjectId(self.current_subject);
+						self.get_datas.get_Subjects(self.current_subject);
+						self.get_datas.get_LinksBySubjectId(self.current_subject);
 						break;
 					default :
 						//donothing	

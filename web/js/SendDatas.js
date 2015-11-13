@@ -14,8 +14,8 @@ function SendDatas () {
 			success : function(response, statut){
 				if(response != false){
 					pageBuilder.get_datas.getSubjects(pageBuilder.current_subject);
-					if(pageBuilder.currentSubject != null){
-						pageBuilder.get_datas.getLinksBySubjectId(pageBuilder.current_subject);
+					if(pageBuilder.current_subject != null){
+						pageBuilder.get_datas.get_LinksBySubjectId(pageBuilder.current_subject);
 					}
 				}
 

@@ -2,7 +2,7 @@ function GetDatas () {
 
 	var urlPrefix = ''; // TODO Modifier a la fin
 
-	this.getSubjects = function (subCurrent) {
+	this.get_Subjects = function (subCurrent) {
 		$('#nav_subjects').append(loader);
 
 		$.ajax({
@@ -15,7 +15,7 @@ function GetDatas () {
 			}
 		});
 	};
-	this.getLinks = function () {
+	this.get_Links = function () {
 		$('#nav_links').append(loader);
 
 		$.ajax({
@@ -27,7 +27,7 @@ function GetDatas () {
 			}
 		});
 	};
-	this.getLinksBySubjectId = function (subject_id) {
+	this.get_LinksBySubjectId = function (subject_id) {
 		$('#nav_links').append(loader);
 
 		$.ajax({
