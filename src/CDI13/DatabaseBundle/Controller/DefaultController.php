@@ -32,6 +32,16 @@ class DefaultController extends Controller
             return new Response("false");
     }
 
+    public function getMarkdownAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $database = new Database();
+            return new Response($database->getMarkdown($request->get('link_id')));
+        }
+
+        else
+            return new Response("false");
+    }
+
     public function searchLinksAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {

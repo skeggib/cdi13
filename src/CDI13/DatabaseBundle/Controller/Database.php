@@ -79,6 +79,57 @@ class Database
 			return json_encode($arr);
 	}
 
+	public function getMarkdown($link_id) {
+		if ($link_id <= 0) {
+			return "false";
+		}
+
+		$max_timestamp_diff = 60; // Après combien de temps le markdown est obsolète (en secondes)
+
+		// Recuperer le dernier Markdown de la BDD
+		$query = "
+					SELECT markdown, creation_timestamp 
+					FROM markdown 
+					WHERE 
+						link_id=" . $link_id ."
+						AND creation_timestamp=(SELECT MAX(creation_timestamp) FROM markdown WHERE link_id=" . $link_id . ")
+		";
+		$results = pg_query($query);
+		if ($line = pg_fetch_array($results)) {
+
+			// Verifier si le dernier MD est trop vieux
+			$last_md_time = strtotime($line[1]);
+			$diff = time() - $last_md_time;
+
+			// Si le markdown n'est pas obsolète, on le retourne
+			if ($diff < $max_timestamp_diff)
+				return $line[0];
+		}
+
+		// Si le markdown est obsolète
+		// Recuperer l'URL demandé
+		$query = "SELECT link FROM link WHERE id=" . $link_id;
+		$results = pg_query($query);
+		if ($line = pg_fetch_array($results))
+			$url = $line[0];
+		else
+			throw new Exception("Ce lien n'existe pas");
+
+		// Recuperer le markdown à partir du lien
+		try {
+			$markdown = Tools::getUrlMarkdown($url);
+		}
+		catch (Exception $e) {
+			return "false";
+		}
+			
+		// Insérer le markdown dans la BDD
+		$query = "INSERT INTO markdown(link_id, markdown) VALUES(" . $link_id . ", '" . $markdown . "')";
+		pg_query($query);
+
+		return $markdown;
+	}
+
 	public function searchLinks($search_string) {
 		$str = strtolower($search_string);
 		$tab = explode(" ", $str);

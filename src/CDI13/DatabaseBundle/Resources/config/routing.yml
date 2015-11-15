@@ -6,6 +6,10 @@ cdi13_database_getLinks:
     path:     /get/links
     defaults: { _controller: CDI13DatabaseBundle:Default:getLinks }
 
+cdi13_database_getMarkdown:
+    path:     /get/markdown
+    defaults: { _controller: CDI13DatabaseBundle:Default:getMarkdown }
+
 cdi13_database_searchLinks:
     path:     /get/search/links
     defaults: { _controller: CDI13DatabaseBundle:Default:searchLinks }
