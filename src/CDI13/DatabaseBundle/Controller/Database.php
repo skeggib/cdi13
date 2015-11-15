@@ -151,6 +151,7 @@ class Database
 	public function addLink($url) {
 		$link = new Link();
 		
+		// On tente de charger le lien
 		try {
 			$link->load($url);
 		}

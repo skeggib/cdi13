@@ -34,14 +34,18 @@ class Link
 		/* --- Get page --- */
 
 		try {
-			$temp = Tools::getUrlTitle($url);
+			$title = Tools::getUrlTitle($url);
 		}
 		catch (Exception $e) {
 			throw new Exception("Impossible de creer le Link", e);
 		}
 
-		if ($temp == "") {
+		if ($title == "") {
 			throw new Exception("La chaine retournée par la requette est vide");
+		}
+
+		if (!$this->isTitleValid($title)) {
+			throw new Exception("Le titre de la page n'est pas valide");
 		}
 
 		/* --- Url --- */
@@ -50,10 +54,10 @@ class Link
 
 		/* --- Subject --- */
 
-		$tempTab = explode("[", $temp);
+		$tempTab = explode("[", $title);
 		if (count($tempTab) > 1) {
-			$temp = $tempTab[1];
-			$tempTab = explode("] ", $temp);
+			$title = $tempTab[1];
+			$tempTab = explode("] ", $title);
 			if (count($tempTab) > 1)
 				$this->subject_name = $tempTab[0];
 			else
@@ -65,12 +69,16 @@ class Link
 
 		/* --- Name --- */
 
-		$temp = explode("] ", $temp)[1];
-		$this->name = explode(" - HackMD", $temp)[0];
+		$title = explode("] ", $title)[1];
+		$this->name = explode(" - HackMD", $title)[0];
 	}
 
 	public function toString() {
 		return "[" . $this->subject_name . "] " . $this->name . " (" . $this->url . ")";
+	}
+
+	private function isTitleValid($title) {
+		return ereg("^\[.+\] .+ \- HackMD", $title);
 	}
 
 
