@@ -80,10 +80,21 @@ function PageBuilder () {
 
 			$('#nav_links').append(temp);			
 		};
+
+		var self = this;
 		//Ouvre la page associer au lien
 		$('.nav_links_object').click(function(event) {
-			window.open($(this).attr('data-cdi13-link'));
+			//window.open($(this).attr('data-cdi13-link'));
+			var linkId = $(this).attr('data-cdi13-id');
+			// TODO Armya Charger le markdown dans la section
+			self.display_manager.historic.push({view : 'link', id : self.current_subject});
+			self.get_datas.get_Markdown(linkId);
+			self.display_manager.displayView_Markdown();
 		});
+	}
+
+	this.createView_Markdown = function (markdown){
+		$('#nav_markdown_text').html(markdown);
 	}
 
 	/*	Fontion qui crée des objets Jquery
