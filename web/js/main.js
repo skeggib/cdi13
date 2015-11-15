@@ -6,8 +6,9 @@ loader.addClass('loaderDiv');
 $('html').append(loader);
 
 window.onload = function(){
-	pageBuilder = new PageBuilder();
-	pageBuilder.init();
+	
+	page_builder = new PageBuilder();
+	page_builder.init();
 
 	$('.loaderDiv').remove();
 }

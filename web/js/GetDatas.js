@@ -2,7 +2,7 @@ function GetDatas () {
 
 	var urlPrefix = ''; // TODO Modifier a la fin
 
-	this.getSubjects = function (subCurrent) {
+	this.get_Subjects = function (subCurrent) {
 		$('#nav_subjects').append(loader);
 
 		$.ajax({
@@ -11,11 +11,11 @@ function GetDatas () {
 			dataType : 'json',
 			success : function(response, statut){
 				result = response;
-				pageBuilder.createViewNavSubjects(subCurrent, response);
+				page_builder.createView_Subjects(subCurrent, response);
 			}
 		});
 	};
-	this.getLinks = function () {
+	this.get_Links = function () {
 		$('#nav_links').append(loader);
 
 		$.ajax({
@@ -27,7 +27,7 @@ function GetDatas () {
 			}
 		});
 	};
-	this.getLinksBySubjectId = function (subject_id) {
+	this.get_LinksBySubjectId = function (subject_id) {
 		$('#nav_links').append(loader);
 
 		$.ajax({
@@ -38,8 +38,7 @@ function GetDatas () {
 				'subject_id' : subject_id
 			},
 			success : function(response, statut){
-				//console.log(JSON.parse(response));
-				pageBuilder.createViewNavLink(response);
+				page_builder.createView_Link(response);
 			}
 		});
 	};
@@ -52,8 +51,7 @@ function GetDatas () {
 				'search_string' : search
 			},
 			success : function(response, statut){
-				console.log((response));
-				pageBuilder.createViewSearch(response);
+				page_builder.createView_Search(response);
 			}
 		});	
 	}

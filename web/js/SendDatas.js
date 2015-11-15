@@ -12,12 +12,10 @@ function SendDatas () {
 				'url' : url
 			},
 			success : function(response, statut){
-				console.log(response);
-
 				if(response != false){
-					pageBuilder.getDatas.getSubjects(pageBuilder.currentSubject);
-					if(pageBuilder.currentSubject != null){
-						pageBuilder.getDatas.getLinksBySubjectId(pageBuilder.currentSubject);
+					page_builder.get_datas.get_Subjects(page_builder.current_subject);
+					if(page_builder.current_subject != null){
+						page_builder.get_datas.get_LinksBySubjectId(page_builder.current_subject);
 					}
 				}
 

@@ -1,4 +1,35 @@
 function DisplayManager (){
+
+	this.historic = [];
+
+	this.displayLastView = function(){
+			if(this.historic.length !== 0){
+			lastView = this.historic.pop();
+			switch (lastView.view){
+				case 'subject' :
+					if(!isNaN(parseInt(lastView.id))){
+						page_builder.get_datas.get_LinksBySubjectId(lastView.id);
+						this.displayView_Links();
+					} else {
+						this.displayView_Subjects();
+					}
+					page_builder.current_subject = lastView.id;
+					page_builder.get_datas.get_Subjects(lastView.id);
+					break;
+				case 'search' : 
+					$('#head_search_textarea').text("Chercher un cours");
+					this.displayView_Links();
+					page_builder.get_datas.get_Subjects(page_builder.current_subject);
+					page_builder.get_datas.get_LinksBySubjectId(page_builder.current_subject);
+					break;
+				default :
+					//donothing	
+			}
+		} else {
+			this.displayView_Subjects(); 
+		}
+	}
+
 	this.resetPlacements = function (object) {
 		object.removeClass('placement-fullscreen');
 		object.removeClass('placement-left');
