@@ -93,8 +93,8 @@ function PageBuilder () {
 		});
 	}
 
-	this.createView_Markdown = function (markdown){
-		$('#nav_markdown_text').html(markdown);
+	this.createView_Markdown = function (arr){
+		$('#nav_markdown_text').html(arr[0].markdown);
 	}
 
 	/*	Fontion qui crée des objets Jquery

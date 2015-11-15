@@ -33,7 +33,7 @@ function GetDatas () {
 		$.ajax({
 			url : urlPrefix + '/database/get/markdown',
 			type : 'GET',
-			dataType : 'text',
+			dataType : 'json',
 			data : {
 				'link_id' : link_id
 			},

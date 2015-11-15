@@ -27,6 +27,11 @@ section#nav {
 		overflow-y: auto;
 	}
 
+		section#nav_markdown_text {
+			height: 100%;
+			width: 100%;
+		}
+
 /* Placement */
 
 .placement-fullscreen {

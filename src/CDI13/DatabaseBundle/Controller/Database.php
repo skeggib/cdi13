@@ -84,6 +84,7 @@ class Database
 			return "false";
 		}
 
+		$md_id_to_old = true;
 		$max_timestamp_diff = 60; // Après combien de temps le markdown est obsolète (en secondes)
 
 		// Recuperer le dernier Markdown de la BDD
@@ -97,13 +98,14 @@ class Database
 		$results = pg_query($query);
 		if ($line = pg_fetch_array($results)) {
 
+			$markdown = $line[0];
+
 			// Verifier si le dernier MD est trop vieux
 			$last_md_time = strtotime($line[1]);
 			$diff = time() - $last_md_time;
 
-			// Si le markdown n'est pas obsolète, on le retourne
 			if ($diff < $max_timestamp_diff)
-				return $line[0];
+				$md_id_to_old = true;
 		}
 
 		// Si le markdown est obsolète
@@ -115,19 +117,28 @@ class Database
 		else
 			throw new Exception("Ce lien n'existe pas");
 
-		// Recuperer le markdown à partir du lien
-		try {
-			$markdown = Tools::getUrlMarkdown($url);
-		}
-		catch (Exception $e) {
-			return "false";
+		if ($md_id_to_old) {
+			// Recuperer le markdown à partir du lien
+			try {
+				$markdown = Tools::getUrlMarkdown($url);
+			}
+			catch (Exception $e) {
+				return "false";
+			}
+
+			$last_md_time = time();
 		}
 			
 		// Insérer le markdown dans la BDD
 		$query = "INSERT INTO markdown(link_id, markdown) VALUES(" . $link_id . ", '" . $markdown . "')";
 		pg_query($query);
 
-		return $markdown;
+		// Creer le tableau
+		 
+		$arr = array();
+		$arr[] = array('link_id' => $link_id, 'timestamp' => $last_md_time, 'markdown' => $markdown);
+
+		return json_encode($arr);
 	}
 
 	public function searchLinks($search_string) {
