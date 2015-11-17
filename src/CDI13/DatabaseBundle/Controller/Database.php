@@ -128,6 +128,10 @@ class Database
 
 			$last_md_time = time();
 		}
+
+		$parser = new \cebe\markdown\MarkdownExtra();
+		$markdown = $parser->parse($markdown);
+		$markdown = htmlspecialchars_decode($markdown);
 			
 		// Insérer le markdown dans la BDD
 		$query = "INSERT INTO markdown(link_id, markdown) VALUES(" . $link_id . ", '" . $markdown . "')";
@@ -161,7 +165,6 @@ class Database
 				$query .= " OR ";
 			$query .= "LOWER(subject.full_name) LIKE '%" . pg_escape_string($tab[$i]) . "%'";
 		}
-
 
 		$results = pg_query($query);
 
