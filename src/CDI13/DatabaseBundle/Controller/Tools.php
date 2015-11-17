@@ -40,7 +40,7 @@ abstract class Tools
 		}
 
 		// Si la page contient le bouton "Publish"
-		if (ereg("\<a .+ class=.ui\-publish", $result)) {
+		if (preg_match("/\<a .+ class=.ui\-publish/", $result)) {
 			$result = file_get_contents($url . "/publish");
 		}
 
