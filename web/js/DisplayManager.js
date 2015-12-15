@@ -44,40 +44,40 @@ function DisplayManager (){
 	this.displayView_Subjects = function () {
 		this.resetPlacements($('section#nav section#nav_subjects'));
 		this.resetPlacements($('section#nav section#nav_links'));
-		this.resetPlacements($('section#nav section#nav_markdown'));
+		this.resetPlacements($('section#nav section#nav_iframe'));
 
 		$('section#nav section#nav_subjects').addClass('placement-fullscreen');
 		$('section#nav section#nav_links').addClass('placement-hidden-right');
-		$('section#nav section#nav_markdown').addClass('placement-hidden-right');
+		$('section#nav section#nav_iframe').addClass('placement-hidden-right');
 	};
 
 	this.displayView_Search = function () {
 		this.resetPlacements($('section#nav section#nav_subjects'));
 		this.resetPlacements($('section#nav section#nav_links'));
-		this.resetPlacements($('section#nav section#nav_markdown'));
+		this.resetPlacements($('section#nav section#nav_iframe'));
 
 		$('section#nav section#nav_links').addClass('placement-fullscreen');
 		$('section#nav section#nav_subjects').addClass('placement-hidden-left');
-		$('section#nav section#nav_markdown').addClass('placement-hidden-right');
+		$('section#nav section#nav_iframe').addClass('placement-hidden-right');
 	};
 
 	this.displayView_Links = function () {
 		this.resetPlacements($('section#nav section#nav_subjects'));
 		this.resetPlacements($('section#nav section#nav_links'));
-		this.resetPlacements($('section#nav section#nav_markdown'));
+		this.resetPlacements($('section#nav section#nav_iframe'));
 
 		$('section#nav section#nav_subjects').addClass('placement-left');
 		$('section#nav section#nav_links').addClass('placement-right');
-		$('section#nav section#nav_markdown').addClass('placement-hidden-right');
+		$('section#nav section#nav_iframe').addClass('placement-hidden-right');
 	};
 
-	this.displayView_Markdown = function () {
+	this.displayView_Iframe = function () {
 		this.resetPlacements($('section#nav section#nav_subjects'));
 		this.resetPlacements($('section#nav section#nav_links'));
-		this.resetPlacements($('section#nav section#nav_markdown'));
+		this.resetPlacements($('section#nav section#nav_iframe'));
 
 		$('section#nav section#nav_subjects').addClass('placement-hidden-left');
-		$('section#nav section#nav_links').addClass('placement-left');
-		$('section#nav section#nav_markdown').addClass('placement-right');
+		$('section#nav section#nav_links').addClass('placement-hidden-left');
+		$('section#nav section#nav_iframe').addClass('placement-fullscreen');
 	};
 };

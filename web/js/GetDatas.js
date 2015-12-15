@@ -27,23 +27,6 @@ function GetDatas () {
 			}
 		});
 	};
-	this.get_Markdown = function (link_id) {
-		$('#nav_markdown_text').append(loader);
-
-		$.ajax({
-			url : urlPrefix + '/database/get/markdown',
-			type : 'GET',
-			dataType : 'json',
-			data : {
-				'link_id' : link_id
-			},
-			success : function(response, statut){
-				console.log("test");
-				console.log(response);
-				page_builder.createView_Markdown(response);
-			}
-		});
-	};
 	this.get_LinksBySubjectId = function (subject_id) {
 		$('#nav_links').append(loader);
 

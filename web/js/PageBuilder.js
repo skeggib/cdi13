@@ -77,6 +77,7 @@ function PageBuilder () {
 			temp.attr('data-cdi13-id', links[i].id);
 			temp.attr('data-cdi13-link', links[i].link);
 			temp.html(this.firstToUpperCase(links[i].name));
+			temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
 
 			$('#nav_links').append(temp);			
 		};
@@ -86,15 +87,20 @@ function PageBuilder () {
 		$('.nav_links_object').click(function(event) {
 			//window.open($(this).attr('data-cdi13-link'));
 			var linkId = $(this).attr('data-cdi13-id');
+			var linkUrl = $(this).attr('data-cdi13-link');
 			// TODO Armya Charger le markdown dans la section
 			self.display_manager.historic.push({view : 'link', id : self.current_subject});
-			self.get_datas.get_Markdown(linkId);
-			self.display_manager.displayView_Markdown();
+			
+			if ($('section#nav_iframe iframe').attr('src') !== linkUrl) {
+				$('section#nav_iframe iframe').attr('src', linkUrl);
+				$('section#nav_iframe .loader').show();
+			}
+			self.display_manager.displayView_Iframe();
 		});
-	}
 
-	this.createView_Markdown = function (arr){
-		$('#nav_markdown_text').html(arr[0].markdown);
+		$('section#nav_iframe iframe').load(function() { // TODO Deplacer vers la bonne section
+			$('section#nav_iframe .loader').hide();
+		});
 	}
 
 	/*	Fontion qui crée des objets Jquery

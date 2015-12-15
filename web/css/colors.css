@@ -19,7 +19,8 @@ div.textarea
 
 div.button:hover,
 div.nav_subjects_object:hover,
-div.nav_links_object:hover
+div.nav_links_object:hover,
+div.nav_links_object .hackmd_link
 {
 	color: #ecf0f1;
 	background-color: #2980b9;
@@ -27,7 +28,8 @@ div.nav_links_object:hover
 
 /* Couleur 2 */
 
-div.nav_subjects_object.selected
+div.nav_subjects_object.selected,
+div.nav_links_object .hackmd_link:hover
 {
 	color: #ecf0f1;
 	background-color: #2c3e50;
