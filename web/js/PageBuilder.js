@@ -62,15 +62,8 @@ function PageBuilder () {
 		});
 	};
 
-	/*	Fontion qui crée des objets Jquery
-			Chaque objet représente un Lien
-		Chaque lien est ensuite inseré dans la page
-		Puis la fonction .click leur est attribué
-	*/
-	this.createView_Link = function (links){
-		//Vide le nav
-		$('#nav_links').html("");
-		//Contruit et ajoute touts les liens dans le nav
+	this.createDom_Link = function (links){
+		var result = $('<div>');
 		for (var i = 0; i < links.length; i++) {
 			var temp = $('<div></div>');
 			temp.addClass('nav_links_object');
@@ -89,9 +82,22 @@ function PageBuilder () {
 
 			//temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
 
-			$('#nav_links').append(temp);			
+			result.append(temp);			
 		};
 
+		return result;
+	} 
+
+	/*	Fontion qui crée des objets Jquery
+			Chaque objet représente un Lien
+		Chaque lien est ensuite inseré dans la page
+		Puis la fonction .click leur est attribué
+	*/
+	this.createView_Link = function (links){
+		//Vide le nav
+		$('#nav_links').html("");
+		//Contruit et ajoute touts les liens dans le nav
+		$('#nav_links').append(this.createDom_Link(links));
 
 		$('.hackmd_link').click(function(event){
 			event.stopPropagation();
@@ -129,15 +135,7 @@ function PageBuilder () {
 		this.display_manager.displayView_Search();
 
 		//Contruit et ajoute touts les liens dans le nav
-		for (var i = 0; i < links.length; i++) {
-			var temp = $('<div></div>');
-			temp.addClass('nav_links_object');
-			temp.attr('data-cdi13-id', links[i].id);
-			temp.attr('data-cdi13-link', links[i].link);
-			temp.html(this.firstToUpperCase(links[i].name) + ' (' + this.firstToUpperCase(links[i].subject_name) + ')');
-
-			$('#nav_links').append(temp);			
-		};
+		$('#nav_links').append(this.createDom_Link(links));
 		//Ouvre la page associer au lien
 		$('.nav_links_object').click(function(event) {
 			window.open($(this).attr('data-cdi13-link'));
