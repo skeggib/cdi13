@@ -98,9 +98,7 @@ function PageBuilder () {
 			self.display_manager.displayView_Iframe();
 		});
 
-		$('section#nav_iframe iframe').load(function() { // TODO Deplacer vers la bonne section
-			$('section#nav_iframe .loader').hide();
-		});
+		this.display_manager.hideLoader_Iframe();
 	}
 
 	/*	Fontion qui crée des objets Jquery

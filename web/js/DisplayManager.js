@@ -33,6 +33,12 @@ function DisplayManager (){
 		}
 	}
 
+	this.hideLoader_Iframe = function () {
+		$('section#nav_iframe iframe').load(function() {
+			$('section#nav_iframe .loader').hide();
+		});
+	}
+
 	this.resetPlacements = function (object) {
 		object.removeClass('placement-fullscreen');
 		object.removeClass('placement-left');
