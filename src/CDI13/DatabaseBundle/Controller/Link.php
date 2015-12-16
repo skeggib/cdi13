@@ -78,7 +78,8 @@ class Link
 	}
 
 	private function isTitleValid($title) {
-		return preg_math("/^\[.+\] .+ \- HackMD/", $title);
+		$re = "/^\\[.+\\] .+ \\- HackMD/"; 
+		return preg_match($re, $title, $matches);
 	}
 
 
