@@ -10,6 +10,7 @@ function GetDatas () {
 			type : 'GET',
 			dataType : 'json',
 			success : function(response, statut){
+				result = response;
 				page_builder.createView_Subjects(subCurrent, response);
 			}
 		});

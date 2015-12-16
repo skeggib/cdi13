@@ -77,30 +77,18 @@ function PageBuilder () {
 			temp.attr('data-cdi13-id', links[i].id);
 			temp.attr('data-cdi13-link', links[i].link);
 			temp.html(this.firstToUpperCase(links[i].name));
-
-			var hackmd_link = $('<a>').addClass('hackmd_link');
-			hackmd_link.attr({
-				'href' : links[i].link,
-				'target' : "_blank"
-			});
-			hackmd_link.text('Voir sur mon HackMD');
-			//temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
-			temp.append(hackmd_link);
+			temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
 
 			$('#nav_links').append(temp);			
 		};
 
-		$('.hackmd_link').click(function(event){
-			addEvent_Back.stopPropagation();
-		})
-
 		var self = this;
 		//Ouvre la page associer au lien
 		$('.nav_links_object').click(function(event) {
-
+			//window.open($(this).attr('data-cdi13-link'));
 			var linkId = $(this).attr('data-cdi13-id');
 			var linkUrl = $(this).attr('data-cdi13-link');
-
+			// TODO Armya Charger le markdown dans la section
 			self.display_manager.historic.push({view : 'link', id : self.current_subject});
 			
 			if ($('section#nav_iframe iframe').attr('src') !== linkUrl) {
@@ -110,7 +98,9 @@ function PageBuilder () {
 			self.display_manager.displayView_Iframe();
 		});
 
-		self.display_manager.hideLoader_Iframe();
+		$('section#nav_iframe iframe').load(function() { // TODO Deplacer vers la bonne section
+			$('section#nav_iframe .loader').hide();
+		});
 	}
 
 	/*	Fontion qui crée des objets Jquery
@@ -148,8 +138,7 @@ function PageBuilder () {
 			$("#head_add_textarea").text("Ajouter un lien vers un cours");
 			$("#head_add_textarea").removeClass('focusOn');
 
-			if(text.indexOf('hackmd.io') != 1){	
-				console.log("ADD LINK : ", text);
+			if(text.indexOf('hackmd.io') >= 0){
 				self.send_datas.newLink(text); 
 			}
 		}
