@@ -77,10 +77,25 @@ function PageBuilder () {
 			temp.attr('data-cdi13-id', links[i].id);
 			temp.attr('data-cdi13-link', links[i].link);
 			temp.html(this.firstToUpperCase(links[i].name));
-			temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
+
+			var hackmd_link = $('<a>').addClass('hackmd_link');
+			hackmd_link.attr({
+				'href' : links[i].link,
+				'target' : '_blank'
+			})
+			hackmd_link.text('Voir sur HackMD');
+
+			temp.append(hackmd_link);
+
+			//temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
 
 			$('#nav_links').append(temp);			
 		};
+
+
+		$('.hackmd_link').click(function(event){
+			event.stopPropagation();
+		})
 
 		var self = this;
 		//Ouvre la page associer au lien

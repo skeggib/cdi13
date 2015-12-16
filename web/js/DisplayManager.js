@@ -24,7 +24,6 @@ function DisplayManager (){
 					break;
 				case 'link' :
 					this.displayView_Links();
-					// TODO armya Vérifie que j'ai pas fait de la merde
 				default :
 					//donothing	
 			}
