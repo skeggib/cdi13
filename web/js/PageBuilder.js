@@ -14,6 +14,7 @@ function PageBuilder () {
 		this.addEvent_NewLink();
 		this.addEvent_Search();
 		this.addEvent_Back();
+		this.addEvent_Iframe();
 		this.display_manager.displayView_Subjects();
 	}
 
@@ -62,14 +63,14 @@ function PageBuilder () {
 		});
 	};
 
-	this.createDom_Link = function (links){
+	this.createDom_Link = function (links, state){
 		var result = $('<div>');
 		for (var i = 0; i < links.length; i++) {
-			var temp = $('<div></div>');
-			temp.addClass('nav_links_object');
-			temp.attr('data-cdi13-id', links[i].id);
-			temp.attr('data-cdi13-link', links[i].link);
-			temp.html(this.firstToUpperCase(links[i].name));
+			var nav_links_object = $('<div></div>');
+			nav_links_object.addClass('nav_links_object');
+			nav_links_object.attr('data-cdi13-id', links[i].id);
+			nav_links_object.attr('data-cdi13-link', links[i].link);
+			nav_links_object.html(this.firstToUpperCase(links[i].name));
 
 			var hackmd_link = $('<a>').addClass('hackmd_link');
 			hackmd_link.attr({
@@ -78,11 +79,29 @@ function PageBuilder () {
 			})
 			hackmd_link.text('Voir sur HackMD');
 
-			temp.append(hackmd_link);
+			nav_links_object.append(hackmd_link);
 
-			//temp.append('<a class="hackmd_link" href="' + links[i].link + '" target="_blank">Voir sur HackMD</a>');
+			var self = this;
+			//Ouvre la page associer au lien
+			nav_links_object.click(function(event) {
+				//window.open($(this).attr('data-cdi13-link'));
+				var linkId = $(this).attr('data-cdi13-id');
+				var linkUrl = $(this).attr('data-cdi13-link');
 
-			result.append(temp);			
+				self.display_manager.historic.push({
+					'view' : 'link', 
+					'id' : self.current_subject,
+					'state' : state
+				});
+				
+				if ($('section#nav_iframe iframe').attr('src') !== linkUrl) {
+					$('section#nav_iframe iframe').attr('src', linkUrl);
+					$('section#nav_iframe .loader').show();
+				}
+				self.display_manager.displayView_Iframe();
+			});		
+
+			result.append(nav_links_object);	
 		};
 
 		return result;
@@ -97,29 +116,11 @@ function PageBuilder () {
 		//Vide le nav
 		$('#nav_links').html("");
 		//Contruit et ajoute touts les liens dans le nav
-		$('#nav_links').append(this.createDom_Link(links));
+		$('#nav_links').append(this.createDom_Link(links, null));
 
 		$('.hackmd_link').click(function(event){
 			event.stopPropagation();
 		})
-
-		var self = this;
-		//Ouvre la page associer au lien
-		$('.nav_links_object').click(function(event) {
-			//window.open($(this).attr('data-cdi13-link'));
-			var linkId = $(this).attr('data-cdi13-id');
-			var linkUrl = $(this).attr('data-cdi13-link');
-			// TODO Armya Charger le markdown dans la section
-			self.display_manager.historic.push({view : 'link', id : self.current_subject});
-			
-			if ($('section#nav_iframe iframe').attr('src') !== linkUrl) {
-				$('section#nav_iframe iframe').attr('src', linkUrl);
-				$('section#nav_iframe .loader').show();
-			}
-			self.display_manager.displayView_Iframe();
-		});
-
-		this.display_manager.hideLoader_Iframe();
 	}
 
 	/*	Fontion qui crée des objets Jquery
@@ -135,10 +136,12 @@ function PageBuilder () {
 		this.display_manager.displayView_Search();
 
 		//Contruit et ajoute touts les liens dans le nav
-		$('#nav_links').append(this.createDom_Link(links));
-		//Ouvre la page associer au lien
-		$('.nav_links_object').click(function(event) {
-			window.open($(this).attr('data-cdi13-link'));
+		$('#nav_links').append(this.createDom_Link(links, 'search'));
+	}
+
+	this.addEvent_Iframe = function () {
+		$('section#nav_iframe iframe').load(function() {
+			$('section#nav_iframe .loader').hide();
 		});
 	}
 

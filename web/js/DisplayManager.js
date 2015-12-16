@@ -23,19 +23,17 @@ function DisplayManager (){
 					page_builder.get_datas.get_LinksBySubjectId(page_builder.current_subject);
 					break;
 				case 'link' :
-					this.displayView_Links();
+					if(lastView.state === 'search'){
+						this.displayView_Search();
+					} else {
+						this.displayView_Links();
+					}
 				default :
 					//donothing	
 			}
 		} else {
 			this.displayView_Subjects(); 
 		}
-	}
-
-	this.hideLoader_Iframe = function () {
-		$('section#nav_iframe iframe').load(function() {
-			$('section#nav_iframe .loader').hide();
-		});
 	}
 
 	this.resetPlacements = function (object) {
