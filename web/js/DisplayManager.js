@@ -3,7 +3,7 @@ function DisplayManager (){
 	this.historic = [];
 
 	this.displayLastView = function(){
-			if(this.historic.length !== 0){
+		if(this.historic.length !== 0){
 			lastView = this.historic.pop();
 			switch (lastView.view){
 				case 'subject' :
@@ -24,13 +24,18 @@ function DisplayManager (){
 					break;
 				case 'link' :
 					this.displayView_Links();
-					// TODO armya Vérifie que j'ai pas fait de la merde
 				default :
-					//donothing	
+					//do nothing	
 			}
 		} else {
 			this.displayView_Subjects(); 
 		}
+	}
+
+	this.hideLoader_Iframe = function () {
+		$('section#nav_iframe iframe').load(function() {
+			$('section#nav_iframe .loader').hide();
+		});
 	}
 
 	this.resetPlacements = function (object) {
