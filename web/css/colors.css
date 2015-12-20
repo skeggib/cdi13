@@ -1,36 +1,106 @@
-/* Fond */
+/* --- Background --- */
 
-body
+.color-test-background
+
+,section#head
+,section#nav section#nav_iframe
+,body
 {
-	background-color: #fff;
+	background-color: #F7F7F7;
 }
 
-/* Base */
 
-div.button,
-div.nav_subjects_object,
-div.nav_links_object,
-div.textarea
+
+/* --- Dark Background --- */
+
+.color-test-dark-background
+
+/* HackMD Links */
+,div.nav_links_object:hover div.content .hackmd_link:hover
+
+,section#nav
+,section#nav section
+
 {
-	background-color: #ecf0f1;
+	color: #F7F7F7;
+	background-color: #233;
 }
 
-/* Couleur 1 */
 
-div.button:hover,
-div.nav_subjects_object:hover,
-div.nav_links_object:hover,
-div.nav_links_object .hackmd_link
+
+/* --- Clear --- */
+
+.color-test-clear
+
+/* Button & Textarea */
+,section#head div.button
+,section#head div.textarea
+
 {
-	color: #ecf0f1;
-	background-color: #2980b9;
+	color: #333;
+	background-color: #ECECEC;
 }
 
-/* Couleur 2 */
 
-div.nav_subjects_object.selected,
-div.nav_links_object .hackmd_link:hover
+
+/* --- Base --- */
+
+.color-test-base
+
+/* Button & Textarea */
+,section#head div.button:hover
+,section#head div.textarea:focus
+
+/* Nav Objects */
+,div.nav_subjects_object div.content
+,div.nav_links_object div.content
+
 {
-	color: #ecf0f1;
-	background-color: #2c3e50;
+	color: #F7F7F7;
+	background-color: #3E717B;
+}
+
+.none
+
+/* Nav Objects */
+,div.nav_subjects_object div.content
+,div.nav_links_object div.content
+{
+	border-color: #3E717B;
+}
+
+
+
+/* --- Color --- */
+
+.color-test-color
+
+/* Nav Objects */
+,div.nav_subjects_object:hover div.content
+,div.nav_links_object:hover div.content
+
+/* HackMD Links */
+,div.nav_links_object div.content .hackmd_link
+
+{
+	color: #F7F7F7;
+	background-color: #21525C;
+}
+
+
+
+/* --- Highlight --- */
+
+.color-test-highlight
+
+/* Nav Objects */
+,div.nav_subjects_object.selected div.content
+
+/* HackMD Links */
+,div.nav_links_object:hover div.content .hackmd_link
+,div.nav_links_object div.content .hackmd_link:hover
+
+{
+	color: #F7F7F7;
+	background-color: #1B4047;
 }

@@ -1,4 +1,6 @@
 div.textarea {
+	position: relative;
+
 	display: inline;
 
 	width: 100%;
@@ -11,8 +13,16 @@ div.textarea {
 
 	outline: 0px solid transparent;;
 
-	padding: 10px 20px;
+	padding: 5px 20px;
 
 	overflow: hidden;
 	white-space: nowrap;
+
+	box-shadow:
+    /* regular bottom */
+    0 .0625em .125em rgba(0, 0, 0, .125),
+    /* inset bottom */
+    inset 0 -.25em 0 -.125em rgba(0, 0, 0, .125),
+    /* category color (left) */
+    inset 1em 0 0 -.7em rgba(0, 0, 0, .2);
 }

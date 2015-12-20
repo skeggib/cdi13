@@ -5,16 +5,16 @@ section#head_back {
 	position: absolute;
 	height: 100%;
 	box-sizing: border-box;
-	border-right: solid 1px #777;
+	padding: 9px 5px;
 }
 
 section#head_back {
 	left: 0;
-	width: 42px;
+	width: 60px;
 }
 
 section#head_add_container_searchtextbox {
-	left: 42px;
+	left: 60px;
 	right: 60%;
 }
 

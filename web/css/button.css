@@ -8,7 +8,15 @@ div.button {
 
 	text-align: center;
 
-	padding: 10px 0px;
+	padding: 5px 0px;
 
 	cursor: pointer;
+
+	box-shadow:
+    /* regular bottom */
+    0 .0625em .125em rgba(0, 0, 0, .125),
+    /* inset bottom */
+    inset 0 -.25em 0 -.125em rgba(0, 0, 0, .125),
+    /* category color (left) */
+    inset 1em 0 0 -.7em rgba(0, 0, 0, .2);
 }

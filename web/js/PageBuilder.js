@@ -37,7 +37,7 @@ function PageBuilder () {
 			var temp = $('<div></div>');
 			temp.addClass('nav_subjects_object');
 			temp.attr('data-cdi13-id', subjects[i].id);
-			temp.html(this.firstToUpperCase(subjects[i].name));
+			temp.html('<div class="content">' + this.firstToUpperCase(subjects[i].name) + '<i class="chevron"></i></div>');
 			if(subCurrent != null && subjects[i].id == subCurrent){
 				temp.addClass('selected');
 			}
@@ -70,7 +70,7 @@ function PageBuilder () {
 			nav_links_object.addClass('nav_links_object');
 			nav_links_object.attr('data-cdi13-id', links[i].id);
 			nav_links_object.attr('data-cdi13-link', links[i].link);
-			nav_links_object.html(this.firstToUpperCase(links[i].name));
+			nav_links_object.html('<div class="content">' + this.firstToUpperCase(links[i].name) + '<i class="chevron"></i></div></div>');
 
 			var hackmd_link = $('<a>').addClass('hackmd_link');
 			hackmd_link.attr({
@@ -79,7 +79,7 @@ function PageBuilder () {
 			})
 			hackmd_link.text('Voir sur HackMD');
 
-			nav_links_object.append(hackmd_link);
+			nav_links_object.find('div.content').append(hackmd_link);
 
 			var self = this;
 			//Ouvre la page associer au lien

@@ -1,10 +1,60 @@
 div.nav_subjects_object,
 div.nav_links_object {
 	width: 100%;
-	padding: 15px;
+	padding: 10px;
 
 	box-sizing: border-box;
-	border-bottom: dashed 1px #777;
 
 	cursor: pointer;
+}
+
+div.nav_subjects_object div.content,
+div.nav_links_object div.content {
+	position: relative;
+	padding: 10px 20px;
+	box-sizing: border-box;
+
+	box-shadow:
+    /* regular bottom */
+    0 .0625em .125em rgba(0, 0, 0, .125),
+    /* inset bottom */
+    inset 0 -.25em 0 -.125em rgba(0, 0, 0, .125),
+    /* category color (left) */
+    inset 1em 0 0 -.7em rgba(0, 0, 0, .2),
+    /* arrow background (right) */
+    inset -2em 0 0 -.3em rgba(0, 0, 0, .05);
+}
+
+.chevron {
+  display: block;
+  width: 1em;
+  height: 1em;
+  font-size: .75em;
+  position: absolute;
+  right: .667em;
+  top: 50%;
+  margin-top: -.6em; /* just eyeballing it */
+}
+
+.chevron:before,
+.chevron:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, .125);
+  width: .5em;
+  height: .5em;
+  right: .25em;
+  top: 50%;
+}
+
+.chevron:before {
+  transform: skewX( 45deg );
+  top: 0;
+  box-shadow: inset -.125em .125em .125em rgba(0, 0, 0, .25);
+}
+.chevron:after {
+  transform: skewX( -45deg );
+  bottom: 0;
+  box-shadow: inset .25em .125em .125em -.125em rgba(0, 0, 0, .25);
 }

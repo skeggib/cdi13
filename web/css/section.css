@@ -6,22 +6,20 @@ section {
 
 section#head {
 	top: 0;
-	height: 42px;
-
-	box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
+	height: 50px;
 }
 
 section#nav {
-	top: 42px;
+	top: 50px;
 	bottom: 0;
-
-	border-top: solid 1px #777;
 }
 
-	section#nav section {
-		box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
-		background-color: #fff;
+	section#nav section#nav_subjects,
+	section#nav section#nav_links {
+		padding-top: 10px;
+	}
 
+	section#nav section {
 		-webkit-transition: all 0.5s ease-in-out;
 
 		overflow-y: auto;
