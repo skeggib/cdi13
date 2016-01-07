@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "840816a9e2ff31578802d8b0736e4958",
-    "content-hash": "f5ef87abd0e9e46021252593a41ee286",
+    "hash": "4d4ab6c5751fb7dc2f0272f77029d479",
+    "content-hash": "df1fa70891927158081f52b745499f15",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -1704,89 +1704,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "erusev/parsedown",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/erusev/parsedown.git",
-                "reference": "3ebbd730b5c2cf5ce78bc1bf64071407fc6674b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/3ebbd730b5c2cf5ce78bc1bf64071407fc6674b7",
-                "reference": "3ebbd730b5c2cf5ce78bc1bf64071407fc6674b7",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Parsedown": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Emanuil Rusev",
-                    "email": "hello@erusev.com",
-                    "homepage": "http://erusev.com"
-                }
-            ],
-            "description": "Parser for Markdown.",
-            "homepage": "http://parsedown.org",
-            "keywords": [
-                "markdown",
-                "parser"
-            ],
-            "time": "2015-10-04 16:44:32"
-        },
-        {
-            "name": "mathjax/mathjax",
-            "version": "2.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mathjax/MathJax.git",
-                "reference": "ba9afeb5a743249acdea17540b48b14ebc95dbe4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mathjax/MathJax/zipball/ba9afeb5a743249acdea17540b48b14ebc95dbe4",
-                "reference": "ba9afeb5a743249acdea17540b48b14ebc95dbe4",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Davide Cervone",
-                    "homepage": "https://github.com/dpvc"
-                },
-                {
-                    "name": "Christian Perfect",
-                    "homepage": "https://github.com/christianp"
-                },
-                {
-                    "name": "Peter Krautzberger",
-                    "homepage": "https://github.com/pkra"
-                }
-            ],
-            "description": "MathJax is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers.",
-            "homepage": "http://www.mathjax.org/",
-            "keywords": [
-                "AsciiMath",
-                "JS",
-                "MathML",
-                "latex",
-                "math"
-            ],
-            "time": "2015-04-30 21:26:13"
-        },
         {
             "name": "sensio/generator-bundle",
             "version": "v2.5.3",

@@ -2,35 +2,17 @@
 	<head>
 		<title>CDI13 - Cours</title>
 		
-		<script type="text/javascript" src="{{ asset('js/jquery.js') }}" ></script>
-		<script type="text/javascript" src="{{ asset('js/GetDatas.js') }}" ></script>
-		<script type="text/javascript" src="{{ asset('js/SendDatas.js') }}" ></script>
-		<script type="text/javascript" src="{{ asset('js/PageBuilder.js') }}" ></script>
-		<script type="text/javascript" src="{{ asset('js/DisplayManager.js') }}" ></script>
-		<script type="text/javascript" src="{{ asset('js/main.js') }}" ></script>
-
+		{% javascripts '@CDI13LinksBundle/Resources/public/js/*' %}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-		<!-- Other CSS -->
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/body.css') }}">
+		{% stylesheets '@CDI13LinksBundle/Resources/public/css/*' filter='cssrewrite' %}
+		    <link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
 
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/section.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/nav.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/head.css') }}">
-
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/textarea.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/button.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/link-button.css') }}">
-
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/loader.css') }}">
-
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/z-index.css') }}">
-
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/screen.css') }}">
-
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/colors.css') }}">
 	</head>
 
 	<body>
